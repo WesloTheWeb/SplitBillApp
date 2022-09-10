@@ -1,0 +1,9 @@
+@import '../../variables.scss';
+
+.poolContainer {
+    grid-area: party;
+    border: $borderColor solid 5px;
+    margin: 2rem;
+    padding: 1rem;
+    border-radius: 10px;
+}

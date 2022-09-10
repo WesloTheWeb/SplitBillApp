@@ -1,0 +1,39 @@
+.App {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  grid-template-areas: 
+  "hud party party"
+  "hud grid grid"
+  ;
+  grid-gap: 1rem;
+}
+
+.poolContainer {
+  background: red;
+}
+
+.header-text {
+  color: green
+}
+
+nav {
+  grid-area: hud;
+  display: flex;
+  flex-direction: column;
+}
+
+button {
+  padding: 1rem 1.5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-transform: capitalize;
+  background-color: transparent;
+  border-radius: 25px;
+
+  &:hover {
+    cursor: pointer;
+    background-color: #000;
+    color: #F0F0F0;
+    opacity: .55;
+  }
+}
