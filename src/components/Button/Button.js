@@ -3,22 +3,25 @@ import classes from './Button.module.scss';
 
 const { totalSumButton, cancelCTA } = classes;
 
-const Button = ({title, nav, action, cancel, type}) => {
+const Button = ({title, action, type}) => {
 
     const buttonTypes = {
-        nav: true,
+        nav: totalSumButton,
         cancel: cancelCTA
     }
 
     const variants = (type) => {
-        if (type === nav) {
-            return nav
-        } 
+        //TODO: Maybe a switch statement?
+        if (type === 'nav') {
+            return buttonTypes.nav;
+        } else if (type === 'cancel') {
+            return buttonTypes.cancel;
+        }
     }
 
     return (
         <button 
-            className={variants(type) ? totalSumButton : ''}
+            className={variants(type)}
             onClick={action}    
         >
             {title}

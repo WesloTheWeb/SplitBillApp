@@ -14,7 +14,7 @@ const TotalSum = ({ amount, edit }) => {
                 <span className={number}>${Math.round((amount * 100) / 100).toFixed(2)}</span>
             </div>
             <Button
-                type={true}
+                type='nav'
                 action={edit}
                 title="Edit total amount" />
         </>
