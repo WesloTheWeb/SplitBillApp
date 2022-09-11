@@ -1,13 +1,15 @@
 import React from 'react';
+import ExpenseForm from '../../containers/ExpenseForm/ExpenseForm';
 import classes from './Modal.module.scss';
 
 const { modal } = classes;
 
-const Modal = (props) => {
+const Modal = ({ expense }) => {
     return (
         <section className={modal}>
-            <h2>Add Expense</h2>
-        
+            {expense ?
+                <ExpenseForm />
+                : null}
         </section>
     );
 };

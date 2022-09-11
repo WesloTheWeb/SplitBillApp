@@ -1,0 +1,17 @@
+.nameTagContainer {
+    display: inline-block;
+    border: 3px solid #000;
+    padding: 0.25rem 1rem;
+    margin: .5rem 1rem;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: capitalize;
+    box-sizing: border-box;
+
+    &:hover {
+        cursor: pointer;
+        border: rgb(91, 18, 159) solid 2px;
+        opacity: .75;
+    }
+}

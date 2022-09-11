@@ -2,8 +2,13 @@
 
 .poolContainer {
     grid-area: party;
-    border: $borderColor solid 5px;
-    margin: 2rem;
-    padding: 1rem;
+    border: $borderOutline solid 2.5px;
+    margin: 1rem 2rem;
+    padding: 0.5rem;
     border-radius: 10px;
+    box-sizing: content-box;
+
+    h2 {
+        margin-top: 0;
+    }
 }

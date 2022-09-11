@@ -9,31 +9,34 @@ import TotalSum from './containers/TotalSum/TotalSum';
 
 function App() {
 
+  // TODO: Convert this to redux state and function to pass
   const [overlay, setOverlay] = useState(false);
 
   const amountHandler = () => {
     setOverlay(!overlay);
-    console.log('uwu')
-  }
+    console.log('UWU')
+  };
 
   return (
     <div className="App">
       {
         overlay ? (
           <>
-            <Overlay 
+            <Overlay
               close={amountHandler}
             />
-            <Modal />
+            <Modal 
+              expense={true}
+            />
           </>
         )
           :
           null
       }
       <nav >
-        <TotalSum 
-          amount={0.00} 
-          edit={amountHandler}  
+        <TotalSum
+          amount={0.00}
+          edit={amountHandler}
         />
         <Button title='Add to party' />
         <Button title='Edit party' />
@@ -44,6 +47,6 @@ function App() {
       <Expenses />
     </div>
   );
-}
+};
 
 export default App;
