@@ -1,0 +1,16 @@
+@import '../../variables.scss';
+
+.modal {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 3;
+    background-color: #F3F3F3;
+    padding: 2rem;
+    width: 50%;
+
+    h2 {
+        text-align: center;
+    }
+}

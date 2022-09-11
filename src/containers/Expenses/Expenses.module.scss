@@ -1,3 +1,10 @@
+@import '../../variables.scss';
+
 .expenseGrid {
+    background-color: $gridBackdrop;
     grid-area: grid;
+    border: $borderOutline solid 2px;
+    border-radius: 10px;
+    margin: 0 2rem;
+    padding: 2rem;
 }
