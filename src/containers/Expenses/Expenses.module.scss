@@ -1,8 +1,11 @@
 @import '../../variables.scss';
 
 .expenseGrid {
-    background-color: $gridBackdrop;
     grid-area: grid;
+    display: grid;
+    grid-gap: 2rem;
+    grid-template-columns: repeat(3, 1fr);
+    background-color: $gridBackdrop;
     border: $borderOutline solid 2px;
     border-radius: 10px;
     margin: 0 2rem;

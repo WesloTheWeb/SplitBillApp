@@ -1,0 +1,37 @@
+@import '../../variables.scss';
+
+.activityContainer {
+    border: 2px solid #000;
+    text-align: center;
+    box-sizing: content-box;
+    font-size: 1.75rem;
+    font-weight: bold;
+    overflow: hidden;
+}
+
+.headerRow {
+    background-color: $white;
+
+    p {
+        margin: 0;
+    }
+}
+
+.participantsRow {
+    display: flex;
+    flex-direction: column;
+    background-color: $navyBlue;
+    padding: 2rem;
+}
+
+.totalExpenseRow {
+    background-color: $gold;
+    padding: 1rem 0;
+    font-size: 2rem;
+}
+
+.dividedSumRow {
+    color: $red;
+    padding: 1rem;
+    font-size: 2rem;
+}

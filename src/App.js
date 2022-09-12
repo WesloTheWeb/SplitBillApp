@@ -25,7 +25,7 @@ function App() {
             <Overlay
               close={amountHandler}
             />
-            <Modal 
+            <Modal
               expense={true}
             />
           </>

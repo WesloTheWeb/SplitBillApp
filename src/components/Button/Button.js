@@ -3,8 +3,9 @@ import classes from './Button.module.scss';
 
 const { totalSumButton, cancelCTA } = classes;
 
-const Button = ({title, action, type}) => {
+const Button = ({ title, action, type }) => {
 
+    // TODO: Would need to pass functions to different modals
     const buttonTypes = {
         nav: totalSumButton,
         cancel: cancelCTA
@@ -16,13 +17,13 @@ const Button = ({title, action, type}) => {
             return buttonTypes.nav;
         } else if (type === 'cancel') {
             return buttonTypes.cancel;
-        }
-    }
+        };
+    };
 
     return (
-        <button 
+        <button
             className={variants(type)}
-            onClick={action}    
+            onClick={action}
         >
             {title}
         </button>
