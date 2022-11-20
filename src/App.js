@@ -1,36 +1,23 @@
-import { React, useState } from 'react';
+import { React } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import './App.scss';
 import Button from './components/Button/Button';
-import Modal from './components/Modal/Modal';
-import Overlay from './components/Overlay/Overlay';
 import Expenses from './containers/Expenses/Expenses';
 import Party from './containers/Party/Party';
 import TotalSum from './containers/TotalSum/TotalSum';
+import OverlayModal from './components/OverlayModal/OverlayModal';
+import { expenseModal } from './app/modalSlice';
+import { toggleOverlay } from './app/overlaySlice';
 
 function App() {
-
-  // TODO: Convert this to redux state and function to pass. Need to be global slice state that changes based on buttons.
-  const [overlay, setOverlay] = useState(false);
-
-  const amountHandler = () => {
-    setOverlay(!overlay);
-  };
+  // const modal = useSelector((state) => state.modal);
+  const overlay = useSelector((state) => state.overlay);
+  const dispatch = useDispatch();
 
   return (
     <div className="App">
       {
-        overlay ? (
-          <>
-            <Overlay
-              close={amountHandler}
-            />
-            <Modal
-              // type='expense'
-            />
-          </>
-        )
-          :
-          null
+        overlay ? <OverlayModal /> : null
       }
       <nav >
         <TotalSum
@@ -38,10 +25,10 @@ function App() {
         />
         <Button title='Add to party' />
         <Button title='Edit party' />
-        <Button 
+        <Button
           title='Add expense'
-          action={amountHandler}
-          />
+          action={() => dispatch(toggleOverlay)}
+        />
         <Button title='Edit expense' />
       </nav>
       <Party />
