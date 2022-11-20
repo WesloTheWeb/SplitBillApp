@@ -6,6 +6,7 @@ const { modal } = classes;
 
 const Modal = ({ type }) => {
     
+    // TODO: Needs to be global state to affect modal render.
     const renderModalType = (type) => {
         switch (type) {
             case 'expense':
