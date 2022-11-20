@@ -9,12 +9,11 @@ import TotalSum from './containers/TotalSum/TotalSum';
 
 function App() {
 
-  // TODO: Convert this to redux state and function to pass
+  // TODO: Convert this to redux state and function to pass. Need to be global slice state that changes based on buttons.
   const [overlay, setOverlay] = useState(false);
 
   const amountHandler = () => {
     setOverlay(!overlay);
-    console.log('UWU')
   };
 
   return (
@@ -26,7 +25,7 @@ function App() {
               close={amountHandler}
             />
             <Modal
-              expense={true}
+              // type='expense'
             />
           </>
         )
@@ -36,11 +35,13 @@ function App() {
       <nav >
         <TotalSum
           amount={0.00}
-          edit={amountHandler}
         />
         <Button title='Add to party' />
         <Button title='Edit party' />
-        <Button title='Add expense' />
+        <Button 
+          title='Add expense'
+          action={amountHandler}
+          />
         <Button title='Edit expense' />
       </nav>
       <Party />

@@ -4,12 +4,24 @@ import classes from './Modal.module.scss';
 
 const { modal } = classes;
 
-const Modal = ({ expense }) => {
+const Modal = ({ type }) => {
+    
+    const renderModalType = (type) => {
+        switch (type) {
+            case 'expense':
+                return (<ExpenseForm />)
+    
+            default:
+                return null;
+        }
+    };
+    
     return (
         <section className={modal}>
-            {expense ?
+            {/* {expense ?
                 <ExpenseForm />
-                : null}
+                : null} */}
+                {renderModalType(type)}
         </section>
     );
 };
