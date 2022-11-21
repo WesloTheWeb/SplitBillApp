@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     overlay: false
@@ -9,7 +9,6 @@ const overlaySlice = createSlice({
     initialState,
     reducers: {
         toggleOverlay: (state) => {
-            console.log('uwu')
             state.overlay = !state.overlay
         }
     },

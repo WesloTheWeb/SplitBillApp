@@ -14,11 +14,17 @@ function App() {
   const overlay = useSelector((state) => state.overlay);
   const dispatch = useDispatch();
 
+  const exampleClick = () => {
+    console.log('clicked from prop!')
+  }
+
   return (
     <div className="App">
       {
-        overlay ? <OverlayModal /> : null
+        overlay.overlay ? <OverlayModal /> : null
       }
+      {console.log(overlay.overlay)}
+      {/* {console.log(overlay.state)} */}
       <nav >
         <TotalSum
           amount={0.00}
@@ -27,7 +33,8 @@ function App() {
         <Button title='Edit party' />
         <Button
           title='Add expense'
-          action={() => dispatch(toggleOverlay)}
+          action={() => dispatch(toggleOverlay())}
+          test={exampleClick}
         />
         <Button title='Edit expense' />
       </nav>

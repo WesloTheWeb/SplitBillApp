@@ -1,12 +1,17 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import Overlay from '../Overlay/Overlay';
 import Modal from '../Modal/Modal';
+import { toggleOverlay } from '../../app/overlaySlice';
 
-const OverlayModal = (props) => {
+const OverlayModal = () => {
+
+    const dispatch = useDispatch();
+
     return (
         <>
             <Overlay
-            // close={amountHandler}
+                close={() => dispatch(toggleOverlay())}
             />
             <Modal
             // type='expense'

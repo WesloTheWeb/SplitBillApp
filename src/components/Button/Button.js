@@ -6,7 +6,8 @@ import classes from './Button.module.scss';
 
 const { totalSumButton, cancelCTA } = classes;
 
-const Button = ({ title, action, type }) => {
+const Button = ({ title, action, type, test }) => {
+
     const dispatch = useDispatch();
 
     // TODO: Would need to pass functions to different modals
