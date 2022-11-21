@@ -6,17 +6,16 @@ import Expenses from './containers/Expenses/Expenses';
 import Party from './containers/Party/Party';
 import TotalSum from './containers/TotalSum/TotalSum';
 import OverlayModal from './components/OverlayModal/OverlayModal';
-import { expenseModal } from './app/modalSlice';
+import { setModal } from './app/modalSlice';
 import { toggleOverlay } from './app/overlaySlice';
-import Modal from './components/Modal/Modal';
 
 function App() {
   const overlay = useSelector((state) => state.overlay);
   const dispatch = useDispatch();
 
   function openExpenseModal() {
+    dispatch(setModal('expense'));
     dispatch(toggleOverlay());
-    dispatch(expenseModal('expense'))
   };
 
 

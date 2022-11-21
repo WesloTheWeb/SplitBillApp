@@ -1,11 +1,12 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Overlay from '../Overlay/Overlay';
 import Modal from '../Modal/Modal';
 import { toggleOverlay } from '../../app/overlaySlice';
+import { selectModal } from '../../app/modalSlice';
 
 const OverlayModal = () => {
-
+    const modalType = useSelector(selectModal);
     const dispatch = useDispatch();
 
     return (
@@ -14,7 +15,7 @@ const OverlayModal = () => {
                 close={() => dispatch(toggleOverlay())}
             />
             <Modal
-                type='example'
+                type={modalType}
             />
         </>
     );
