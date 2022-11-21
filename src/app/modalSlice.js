@@ -21,10 +21,17 @@ const modalSlice = createSlice({
     name: 'modal',
     initialState,
     reducers: {
-        expenseModal: () => {
-          console.log('Hit from redux');
-          console.log(initialState);
-            // state.modal = 'expense';
+        // expenseModal: (type) => {
+        //     console.log('accessed expense slice')
+        //     switch (type) {
+        //         case 'expense':
+        //             return (<ExpenseForm />)
+        //         default:
+        //             return null;
+        //     }
+        // }
+        expenseModal: (state) => {
+            state.modal = 'expense'
         }
     },
 });

@@ -14,7 +14,7 @@ const OverlayModal = () => {
                 close={() => dispatch(toggleOverlay())}
             />
             <Modal
-            // type='expense'
+                type='example'
             />
         </>
     );

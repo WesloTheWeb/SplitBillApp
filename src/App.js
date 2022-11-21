@@ -8,23 +8,23 @@ import TotalSum from './containers/TotalSum/TotalSum';
 import OverlayModal from './components/OverlayModal/OverlayModal';
 import { expenseModal } from './app/modalSlice';
 import { toggleOverlay } from './app/overlaySlice';
+import Modal from './components/Modal/Modal';
 
 function App() {
-  // const modal = useSelector((state) => state.modal);
   const overlay = useSelector((state) => state.overlay);
   const dispatch = useDispatch();
 
-  const exampleClick = () => {
-    console.log('clicked from prop!')
-  }
+  function openExpenseModal() {
+    dispatch(toggleOverlay());
+    dispatch(expenseModal('expense'))
+  };
+
 
   return (
     <div className="App">
       {
         overlay.overlay ? <OverlayModal /> : null
       }
-      {console.log(overlay.overlay)}
-      {/* {console.log(overlay.state)} */}
       <nav >
         <TotalSum
           amount={0.00}
@@ -33,8 +33,7 @@ function App() {
         <Button title='Edit party' />
         <Button
           title='Add expense'
-          action={() => dispatch(toggleOverlay())}
-          test={exampleClick}
+          action={openExpenseModal}
         />
         <Button title='Edit expense' />
       </nav>
