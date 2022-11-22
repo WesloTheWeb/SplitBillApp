@@ -18,7 +18,6 @@ function App() {
     dispatch(toggleOverlay());
   };
 
-
   return (
     <div className="App">
       {

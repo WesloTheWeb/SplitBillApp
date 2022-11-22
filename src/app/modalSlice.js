@@ -8,15 +8,6 @@ const modalSlice = createSlice({
     name: 'modal',
     initialState,
     reducers: {
-        // expenseModal: (type) => {
-        //     console.log('accessed expense slice')
-        //     switch (type) {
-        //         case 'expense':
-        //             return (<ExpenseForm />)
-        //         default:
-        //             return null;
-        //     }
-        // }
         setModal: (state, action) => {
             state.modal = action.payload;
         }

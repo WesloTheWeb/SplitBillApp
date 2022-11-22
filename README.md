@@ -27,7 +27,7 @@ SInce most of the app is going to be sharing the state *and* affecting the state
   
 ## To Do:
 - <s>Craft the UI</s>
-- State Management system, set up redux.
+- <s>State Management system, set up redux.</s>
 - Drag-n-drop API
 - Install form library (React Hook Forms)
 - Unit Testing
