@@ -1,21 +1,8 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import ExpenseForm from "../containers/ExpenseForm/ExpenseForm";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     modal: null
 }
-
-// TODO: Needs to be global state to affect modal render.
-const renderModalType = (type) => {
-    switch (type) {
-        case 'expense':
-            // return (<ExpenseForm />)
-            console.log('Hit from redux');
-
-        default:
-            return null;
-    }
-};
 
 const modalSlice = createSlice({
     name: 'modal',
@@ -30,11 +17,14 @@ const modalSlice = createSlice({
         //             return null;
         //     }
         // }
-        expenseModal: (state) => {
-            state.modal = 'expense'
+        setModal: (state, action) => {
+            state.modal = action.payload;
         }
-    },
+    }
 });
 
-export const { expenseModal } = modalSlice.actions;
+export const { setModal } = modalSlice.actions;
+
+export const selectModal = (state) => state.modal.modal;
+
 export default modalSlice.reducer;
