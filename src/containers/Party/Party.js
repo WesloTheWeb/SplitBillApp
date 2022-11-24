@@ -9,8 +9,6 @@ const Party = () => {
 
     const currentParty = useSelector((state) => state.party.partyMembers);
 
-    console.log(currentParty)
-
     return (
         <section className={poolContainer}>
             <h2 className="header-text">Party Members</h2>

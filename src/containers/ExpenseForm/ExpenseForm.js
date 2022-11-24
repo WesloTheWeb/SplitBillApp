@@ -27,7 +27,7 @@ const ExpenseForm = (props) => {
                 </section>
                 <section className={buttonContainer}>
                     <Button 
-                        type='cancel'
+                        Btntype='cancel'
                         title="Cancel" />
                     <Button
                         title="Submit" />

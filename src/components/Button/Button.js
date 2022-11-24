@@ -3,7 +3,7 @@ import classes from './Button.module.scss';
 
 const { totalSumButton, cancelCTA, addCTA } = classes;
 
-const Button = ({ title, action, type }) => {
+const Button = ({ title, action, Btntype }) => {
 
     const buttonTypes = {
         nav: totalSumButton,
@@ -11,8 +11,8 @@ const Button = ({ title, action, type }) => {
         addMember: addCTA
     }
 
-    const variants = (type) => {
-        switch (type) {
+    const variants = (Btntype) => {
+        switch (Btntype) {
             case 'nav':
                 return buttonTypes.nav;
 
@@ -26,7 +26,7 @@ const Button = ({ title, action, type }) => {
 
     return (
         <button
-            className={variants(type)}
+            className={variants(Btntype)}
             onClick={action}
         >
             {title}
