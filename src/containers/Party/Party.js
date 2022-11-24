@@ -1,22 +1,27 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import NameTag from '../../components/NameTag/NameTag';
 import classes from './Party.module.scss';
 
 const { poolContainer } = classes;
 
-const Party = ({}) => {
+const Party = () => {
+
+    const currentParty = useSelector((state) => state.party.partyMembers);
+
+    console.log(currentParty)
+
     return (
         <section className={poolContainer}>
             <h2 className="header-text">Party Members</h2>
-            <NameTag name="Claude" />
-            <NameTag name="Hilda" />
-            <NameTag name="Lorenz" />
-            <NameTag name="Raphael" />
-            <NameTag name="Ignatz" />
-            <NameTag name="Lysythia" />
-            <NameTag name="Marianne" />
-            <NameTag name="Leonie" />
-            <NameTag name="Byleth" />
+            {
+                currentParty.map((person, idx) => {
+                    return <NameTag
+                        key={idx}
+                        name={person}
+                    />
+                })
+            }
         </section>
     );
 };

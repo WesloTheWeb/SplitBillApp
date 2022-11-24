@@ -15,6 +15,7 @@ const ActivityItem = ({ totalExpense, dividedSum }) => {
                 <NameTag name='Claude' />
             </section>
             <section className={participantsRow}>
+                {/* TODO: Should have its own state of participants separate from the party state */}
                 <NameTag name='Hilda' />
                 <NameTag name='Marianne' />
                 <NameTag name='Lorenz' />
