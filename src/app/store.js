@@ -2,7 +2,6 @@ import { configureStore } from '@reduxjs/toolkit';
 import modalReducer from './modalSlice';
 import overlayReducer from './overlaySlice';
 import partyReducer from './partySlice';
-// import rootReducer from './reducers'
 
 export const store = configureStore({
   reducer: {
@@ -10,4 +9,4 @@ export const store = configureStore({
     overlay: overlayReducer,
     party: partyReducer
   }
-})
+});

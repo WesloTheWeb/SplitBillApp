@@ -14,7 +14,5 @@ const partySlice = createSlice({
     }
 });
 
-
 export const editParty = (state) => state.party.partyMembers;
-
 export default partySlice.reducer;

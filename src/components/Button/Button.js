@@ -1,28 +1,27 @@
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-// import { expenseModal } from './app/modalSlice';
-import { expenseModal } from '../../app/modalSlice';
 import classes from './Button.module.scss';
 
-const { totalSumButton, cancelCTA } = classes;
+const { totalSumButton, cancelCTA, addCTA } = classes;
 
-const Button = ({ title, action, type, test }) => {
+const Button = ({ title, action, type }) => {
 
-    const dispatch = useDispatch();
-
-    // TODO: Would need to pass functions to different modals
     const buttonTypes = {
         nav: totalSumButton,
-        cancel: cancelCTA
+        cancel: cancelCTA,
+        addMember: addCTA
     }
 
     const variants = (type) => {
-        //TODO: Maybe a switch statement?
-        if (type === 'nav') {
-            return buttonTypes.nav;
-        } else if (type === 'cancel') {
-            return buttonTypes.cancel;
-        };
+        switch (type) {
+            case 'nav':
+                return buttonTypes.nav;
+
+            case 'cancel':
+                return buttonTypes.cancel;
+
+            case 'add':
+                return buttonTypes.addMember;
+        }
     };
 
     return (
