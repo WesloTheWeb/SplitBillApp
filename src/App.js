@@ -34,7 +34,7 @@ function App() {
           amount={0.00}
         />
         <Button
-          title='Add to party'
+          title='Manage Party'
           action={openAddToPartyModal}
         />
         {/* <Button title='Edit party' /> */}

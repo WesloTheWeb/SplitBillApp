@@ -33,8 +33,12 @@ const AddPartyMembersForm = () => {
 
     return (
         <>
-            <h2>Add Party Members</h2>
-            <p>To add members to your party fill out the form below of their name and click add.</p>
+        {/* Might change component to "ManagePartyForm" if opt for removing members in same modal */}
+            <h2>Manage Party Members</h2>
+            <p>
+                To add members to your party fill out the form below of their name and click add. To remove party members,
+                hover over their name and click the 'x' to delete from the party.
+            </p>
             <form
                 className='formContainer'
                 onSubmit={handleSubmit(onSubmit)}

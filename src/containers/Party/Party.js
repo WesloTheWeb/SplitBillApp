@@ -11,7 +11,7 @@ const Party = () => {
 
     return (
         <section className={poolContainer}>
-            <h2 className="header-text">Party Members</h2>
+            <h2 className="header-text">Party Members({currentParty.length})</h2>
             { currentParty.length > 0 ?
                 currentParty?.map((person, idx) => {
                     return <NameTag
