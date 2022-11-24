@@ -12,13 +12,15 @@ const Party = () => {
     return (
         <section className={poolContainer}>
             <h2 className="header-text">Party Members</h2>
-            {
-                currentParty.map((person, idx) => {
+            { currentParty.length > 0 ?
+                currentParty?.map((person, idx) => {
                     return <NameTag
                         key={idx}
                         name={person}
                     />
                 })
+                : 
+                <p>There are currently nobody in the party</p>
             }
         </section>
     );

@@ -9,11 +9,12 @@ const partySlice = createSlice({
     initialState,
     reducers: {
         setPartyMember: (state, action) => {
-            state.party = action.payload;
+            state.partyMembers.push(
+                action.payload
+            );
         }
     }
 });
 
-export const editParty = (state) => state.party.partyMembers;
 export const { setPartyMember } = partySlice.actions;
 export default partySlice.reducer;
