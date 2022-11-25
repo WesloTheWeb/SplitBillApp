@@ -19,7 +19,7 @@ function App() {
   };
 
   function openAddToPartyModal() {
-    dispatch(setModal('addPartyMembers'));
+    dispatch(setModal('manageParty'));
     dispatch(toggleOverlay());
 
   }

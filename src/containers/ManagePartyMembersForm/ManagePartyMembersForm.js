@@ -7,13 +7,13 @@ import { setPartyMember } from '../../app/partySlice';
 import '../../App.scss';
 import Party from '../Party/Party';
 
-const AddPartyMembersForm = () => {
+const ManagePartyMembersForm = () => {
 
     // TODO: Add error-handling for null form. It doesnt allow null, but make it more error shown.
 
     const dispatch = useDispatch();
 
-    const { register, handleSubmit, watch, reset, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
     const onSubmit = (data) => {
         dispatch(setPartyMember(data.partyMemberName))
@@ -70,4 +70,4 @@ const AddPartyMembersForm = () => {
     );
 };
 
-export default AddPartyMembersForm;
+export default ManagePartyMembersForm;

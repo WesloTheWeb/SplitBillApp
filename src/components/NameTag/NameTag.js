@@ -1,12 +1,16 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { removePartyMember } from '../../app/partySlice';
 import classes from './NameTag.module.scss';
 
 const { nameTagContainer, nameTagExitContainer } = classes;
 
 const NameTag = ({ name }) => {
 
+    const dispatch = useDispatch();
+
     const removeNameHandler = () => {
-        console.log('clicked')
+        dispatch(removePartyMember(name));
     }
 
     return (

@@ -1,6 +1,6 @@
 import React from 'react';
 import ExpenseForm from '../../containers/ExpenseForm/ExpenseForm';
-import AddPartyMembersForm from '../../containers/AddPartyMembersForm/AddPartyMembersForm';
+import ManagePartyMembersForm from '../../containers/ManagePartyMembersForm/ManagePartyMembersForm';
 import classes from './Modal.module.scss';
 
 const { modal } = classes;
@@ -11,8 +11,8 @@ const Modal = ({ type }) => {
             case 'expense':
                 return (<ExpenseForm />)
 
-            case 'addPartyMembers':
-                return (<AddPartyMembersForm />)
+            case 'manageParty':
+                return (<ManagePartyMembersForm />)
 
             default:
                 return null;
