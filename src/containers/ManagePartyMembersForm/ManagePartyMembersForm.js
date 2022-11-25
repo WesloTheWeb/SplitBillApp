@@ -3,20 +3,16 @@ import { useDispatch } from 'react-redux';
 import { useForm } from "react-hook-form";
 import Button from '../../components/Button/Button';
 import { toggleOverlay } from '../../app/overlaySlice';
-import { setPartyMember } from '../../app/partySlice';
+import { setPartyMember, clearParty } from '../../app/partySlice';
 import '../../App.scss';
 import classes from './ManagePartyMembersForm.module.scss';
-
 import Party from '../Party/Party';
 
 const { buttonOrderParty } = classes;
 
 const ManagePartyMembersForm = () => {
 
-    // TODO: Add error-handling for null form. It doesnt allow null, but make it more error shown.
-
     const dispatch = useDispatch();
-
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
     const onSubmit = (data) => {
@@ -29,15 +25,17 @@ const ManagePartyMembersForm = () => {
         });
 
     };
-    // console.log(watch("partyMemberName")); // watch input value by passing the name of it
 
     function closeForm() {
         dispatch(toggleOverlay());
     }
 
+    function clearPartyHandler() {
+        dispatch(clearParty());
+    }
+
     return (
         <>
-            {/* Might change component to "ManagePartyForm" if opt for removing members in same modal */}
             <h2>Manage Party Members</h2>
             <p>
                 To add members to your party fill out the form below of their name and click add. To remove party members,
@@ -87,6 +85,7 @@ const ManagePartyMembersForm = () => {
                     title="Done"
                 />
                 <Button
+                    action={clearPartyHandler}
                     Btntype="clearParty"
                     title="Clear Party"
                 />

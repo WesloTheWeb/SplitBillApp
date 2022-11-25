@@ -18,9 +18,12 @@ const partySlice = createSlice({
             // another way 
             // state.partyMembers = state.partyMembers.filter((member) => member !== action.payload );
             state.partyMembers = state.partyMembers.slice(0, idx).concat(state.partyMembers.slice(idx + 1));
+        },
+        clearParty: (state) => {    
+            state.partyMembers = []
         }
     }
 });
 
-export const { setPartyMember, removePartyMember } = partySlice.actions;
+export const { setPartyMember, removePartyMember, clearParty } = partySlice.actions;
 export default partySlice.reducer;
