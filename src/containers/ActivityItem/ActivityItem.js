@@ -9,22 +9,23 @@ const ActivityItem = ({ title, personPaid, cost, participants, includeHost, divi
     return (
         <div className={activityContainer}>
             <section className={headerRow}>
-                <p>
-                    Korean BBQ
-                </p>
-                <NameTag name='Claude' />
+                <h3>{title}</h3>
+                {personPaid}
             </section>
             <section className={participantsRow}>
                 {/* TODO: Should have its own state of participants separate from the party state */}
-                <NameTag name='Hilda' />
-                <NameTag name='Marianne' />
-                <NameTag name='Lorenz' />
+               {participants?.map((person) => {
+                return (
+                    <NameTag name={person} />
+                )
+               })}
             </section>
+            <p>Host included?: {includeHost} </p>
             <section className={totalExpenseRow}>
-                $506.68
+                {cost}
             </section>
             <section className={dividedSumRow}>
-                -$46.06 / Person
+                {dividedCosts} / Person
             </section>
         </div>
     );

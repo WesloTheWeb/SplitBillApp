@@ -1,8 +1,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    expenses: []
+    expenses: [{
+        expenseName: 'Korean BBQ',
+        personBeingPaid: 'Wesley',
+        costs: 140,
+        payers: ['Wesley', 'Laurin'],
+        hostAsParticipant: true,
+        mitigatedCostsPerPerson: 70
+    }]
 }
+
+// console.log(initialState.expenses)
 
 // TODO: Push a "bucket" object that properties are edited and will be pushed into expense array, which will get iterated.
 const expenseSlice = createSlice({
