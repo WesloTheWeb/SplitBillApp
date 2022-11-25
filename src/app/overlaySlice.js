@@ -11,7 +11,7 @@ const overlaySlice = createSlice({
         toggleOverlay: (state) => {
             state.overlay = !state.overlay
         }
-    },
+    }
 });
 
 export const { toggleOverlay } = overlaySlice.actions;

@@ -1,18 +1,18 @@
 import React from 'react';
 import ExpenseForm from '../../containers/ExpenseForm/ExpenseForm';
+import ManagePartyMembersForm from '../../containers/ManagePartyMembersForm/ManagePartyMembersForm';
 import classes from './Modal.module.scss';
 
 const { modal } = classes;
 
 const Modal = ({ type }) => {
-    // TODO: Needs to be global state to affect modal render.
     const renderModalType = (type) => {
         switch (type) {
             case 'expense':
                 return (<ExpenseForm />)
 
-            case 'example':
-                return (<ExpenseForm />)
+            case 'manageParty':
+                return (<ManagePartyMembersForm />)
 
             default:
                 return null;

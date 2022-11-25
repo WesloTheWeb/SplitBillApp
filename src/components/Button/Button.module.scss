@@ -11,4 +11,40 @@
 .cancelCTA {
     background-color: $red;
     color: #FFF;
+
+    &:hover {
+        background-color: #FFF;
+        color: red;
+    }
+}
+
+.addCTA {
+    border-radius: 5px;
+    margin: 0;
+    padding: 0;
+    background-color: $addColor;
+    color: $white;
+
+    &:hover {
+        background-color:  #004d00;
+    }
+}
+
+.doneCTA {
+    background-color: $doneColor;
+    color: $white;
+
+    &:hover {
+        background-color: #1072FA;
+    }
+}
+
+.resetCTA {
+    background-color: #F0CE3F;
+    color: #000;
+
+    &:hover {
+        background-color: $gold;
+        color: #000;
+    }
 }

@@ -5,7 +5,6 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 **NOTE:** 
 This will strictly be a web app and is not intended to be mobile responsive. Maybe in the future I can design the schematics to adapt on a mobile screen but this project is mainly to feature the Drag-n-Drop API and that is not an ideal UX for mobile users in the current iteration design I have.
 
-
 ## Technology Used
 - Create React App
 - Redux
@@ -20,7 +19,6 @@ better for debugging and dealing with dynamic data.
 
 SInce most of the app is going to be sharing the state *and* affecting the state data, redux seems appropriate.
 
-
 ## Upcoming Features
 - **Drag n Drop of names to affect the total cost of expense (Main Feature)**
 - Menu and modals to create, read and delete data.
@@ -29,5 +27,6 @@ SInce most of the app is going to be sharing the state *and* affecting the state
 - <s>Craft the UI</s>
 - <s>State Management system, set up redux.</s>
 - Drag-n-drop API
-- Install form library (React Hook Forms)
+- <s>Install form library (React Hook Forms)</s>
 - Unit Testing
+- Feature: Bill Roulette

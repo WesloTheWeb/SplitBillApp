@@ -18,6 +18,12 @@ function App() {
     dispatch(toggleOverlay());
   };
 
+  function openAddToPartyModal() {
+    dispatch(setModal('manageParty'));
+    dispatch(toggleOverlay());
+
+  }
+
   return (
     <div className="App">
       {
@@ -27,13 +33,15 @@ function App() {
         <TotalSum
           amount={0.00}
         />
-        <Button title='Add to party' />
-        <Button title='Edit party' />
+        <Button
+          title='Manage Party'
+          action={openAddToPartyModal}
+        />
         <Button
           title='Add expense'
           action={openExpenseModal}
         />
-        <Button title='Edit expense' />
+        {/* <Button title='Edit expense' /> */}
       </nav>
       <Party />
       <Expenses />

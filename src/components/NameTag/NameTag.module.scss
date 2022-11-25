@@ -1,6 +1,7 @@
 @import '../../variables.scss';
 
 .nameTagContainer {
+    position: relative;
     display: inline-block;
     background-color: $white;
     border: 3px solid #000;
@@ -16,5 +17,28 @@
         cursor: pointer;
         border: rgb(91, 18, 159) solid 2px;
         opacity: .75;
+    }
+}
+
+.nameTagExitContainer {
+    display: block;
+    position: absolute;
+    height: 25%;
+    left: 100%;
+    top: -0.2rem;
+    margin-left: -.75rem;
+    background-color:#EFF1F3;
+    font-size:12px;
+    padding: .25rem .5rem;
+    border-radius: 15px;
+    border-style: solid;
+    border-color: #000;
+    font-weight: bold;
+    color:#000;
+    text-decoration: none;
+    font-family: arial;    
+
+    &:hover {
+        background-color: #a9a9a9;
     }
 }
