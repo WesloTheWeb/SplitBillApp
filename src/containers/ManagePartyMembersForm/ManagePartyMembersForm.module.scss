@@ -1,0 +1,9 @@
+.buttonOrderParty {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: right;
+
+    button {
+        margin: 0 .75rem;
+    }
+}

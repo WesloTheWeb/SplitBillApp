@@ -1,14 +1,16 @@
 import React from 'react';
 import classes from './Button.module.scss';
 
-const { totalSumButton, cancelCTA, addCTA } = classes;
+const { totalSumButton, cancelCTA, addCTA, resetCTA, doneCTA } = classes;
 
 const Button = ({ title, action, Btntype }) => {
 
     const buttonTypes = {
         nav: totalSumButton,
         cancel: cancelCTA,
-        addMember: addCTA
+        addMember: addCTA,
+        done: doneCTA,
+        clearParty: resetCTA
     }
 
     const variants = (Btntype) => {
@@ -21,7 +23,13 @@ const Button = ({ title, action, Btntype }) => {
 
             case 'add':
                 return buttonTypes.addMember;
-        }
+
+            case 'done':
+                return buttonTypes.done;
+
+            case 'clearParty':
+                return buttonTypes.clearParty;
+            }
     };
 
     return (

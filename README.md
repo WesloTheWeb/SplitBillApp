@@ -31,3 +31,4 @@ SInce most of the app is going to be sharing the state *and* affecting the state
 - Drag-n-drop API
 - Install form library (React Hook Forms)
 - Unit Testing
+- Feature: Bill Roulette

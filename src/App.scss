@@ -45,8 +45,24 @@ button {
   border-radius: 5px;
   display: grid;
   grid-template-areas: 'a b'
-  '. c';
+    '. c';
   grid-gap: 2.75rem;
+
+  button {
+    font-size: 1rem;
+    padding: 1rem 3rem;
+  }
+
+  label {
+    display: block;
+    text-transform: capitalize;
+    font-weight: bold;
+    margin: .2rem 0;
+  }
+
+  input {
+    margin: 0 0 1rem 0;
+  }
 
   .sideBySide {
     display: flex;
@@ -59,30 +75,33 @@ button {
       font-size: 1.4rem;
     }
   }
-  
-  button {
-    font-size: 1rem;
-    padding: 1rem 3rem;
+
+  .errorMessage {
+    display: flex;
+    background-color: #FFF;
+    padding: 0.25rem;
+    border: 2px solid red;
+    color: red;
+    margin: 1rem 0.25rem;
+
+    svg {
+      width: 2rem;
+
+    }
   }
 
-  label {
-      display: block;
-      text-transform: capitalize;
-      font-weight: bold;
-      margin: .2rem 0;
-  }
-
-  input {
-      margin: 0 0 1rem 0;
-  }
 }
 
 .buttonContainer {
   display: flex;
   justify-content: right;
-  
-  button {
-      margin: 0 .75rem;
-  }
-}
 
+  button {
+    margin: 0 .75rem;
+  }
+
+  .managePartyBtnOrder {
+    justify-content: right;
+  }
+
+}
