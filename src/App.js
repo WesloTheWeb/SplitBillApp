@@ -21,7 +21,6 @@ function App() {
   function openAddToPartyModal() {
     dispatch(setModal('manageParty'));
     dispatch(toggleOverlay());
-
   }
 
   return (

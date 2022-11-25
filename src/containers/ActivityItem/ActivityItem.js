@@ -4,7 +4,7 @@ import classes from './ActivityItem.module.scss';
 
 const { activityContainer, headerRow, participantsRow, totalExpenseRow, dividedSumRow } = classes;
 
-const ActivityItem = ({ totalExpense, dividedSum }) => {
+const ActivityItem = ({ title, personPaid, cost, participants, includeHost, dividedCosts }) => {
 
     return (
         <div className={activityContainer}>

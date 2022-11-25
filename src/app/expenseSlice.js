@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    expense: []
+    expenses: []
 }
 
 // TODO: Push a "bucket" object that properties are edited and will be pushed into expense array, which will get iterated.
@@ -10,12 +10,13 @@ const expenseSlice = createSlice({
     initialState,
     reducers: {
         setExpenseBucket: (state, action) => {
-            state.expense.push({
+            state.expenses.push({
                 expenseName: action.payload,
                 personBeingPaid: action.payload,
-                Costs: action.payload,
-                Payers: action.payload,
-                hostAsParticipant: action.payload
+                costs: action.payload,
+                payers: action.payload,
+                hostAsParticipant: action.payload,
+                mitigatedCostsPerPerson: action.payload
             });
         },
     }
