@@ -38,7 +38,6 @@ const expenseSlice = createSlice({
                 costs: action.payload,
                 payers: action.payload,
                 hostAsParticipant: action.payload,
-                mitigatedCostsPerPerson: action.payload
             });
         },
     }

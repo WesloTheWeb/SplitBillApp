@@ -49,3 +49,5 @@ function App() {
 };
 
 export default App;
+
+// TODO: Work on naming for files and organization. ActivityItem --> Bucket, at some point.
