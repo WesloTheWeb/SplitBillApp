@@ -16,7 +16,9 @@ const ActivityItem = ({ title, personPaid, participants, includeHost, cost }) =>
                 {/* TODO: Should have its own state of participants separate from the party state */}
                 {participants?.map((person) => {
                     return (
-                        <NameTag name={person} />
+                        <NameTag
+                            key={person}
+                            name={person} />
                     )
                 })}
             </section>

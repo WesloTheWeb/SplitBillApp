@@ -9,13 +9,12 @@ const Expenses = () => {
 
     const expenses = useSelector((state) => state.expense.expenses)
 
-    console.log(expenses)
-
     return (
         <section className={expenseGrid}>
             {expenses?.map((activity) => {
                 return (
                     <ActivityItem
+                        key={activity.expenseName}
                         title={activity.expenseName}
                         personPaid={activity.personBeingPaid}
                         cost={activity.costs}
