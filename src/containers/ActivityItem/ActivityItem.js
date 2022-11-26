@@ -4,28 +4,28 @@ import classes from './ActivityItem.module.scss';
 
 const { activityContainer, headerRow, participantsRow, totalExpenseRow, dividedSumRow } = classes;
 
-const ActivityItem = ({ title, personPaid, cost, participants, includeHost, dividedCosts }) => {
+const ActivityItem = ({ title, personPaid, participants, includeHost, cost }) => {
 
     return (
         <div className={activityContainer}>
             <section className={headerRow}>
                 <h3>{title}</h3>
-                {personPaid}
+                <h4>{personPaid}</h4>
             </section>
             <section className={participantsRow}>
                 {/* TODO: Should have its own state of participants separate from the party state */}
-               {participants?.map((person) => {
-                return (
-                    <NameTag name={person} />
-                )
-               })}
+                {participants?.map((person) => {
+                    return (
+                        <NameTag name={person} />
+                    )
+                })}
             </section>
-            <p>Host included?: {includeHost} </p>
+            <p>Host included?: {includeHost ? 'yes' : 'no'} </p>
             <section className={totalExpenseRow}>
-                {cost}
+                ${cost.toFixed(2)}
             </section>
             <section className={dividedSumRow}>
-                {dividedCosts} / Person
+                -${(cost / participants.length).toFixed(2)} / Person
             </section>
         </div>
     );
