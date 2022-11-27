@@ -1,34 +1,9 @@
-.expenseFormContainer {
-    display: grid;
-    grid-template-areas: 'a b'
-    '. c';
-    // grid-gap: 2.75rem;
-    grid-gap: 0.75rem;
-
-    label {
-        display: block;
-        text-transform: capitalize;
-        font-weight: bold;
-        margin: .2rem 0;
-    }
-
-    input {
-        margin: 0 0 1rem 0;
-    }
-
-    .expenseFieldsContainer {
-        grid-area: a;
-
-    }
-
-    .expensePartyContainer {
-        grid-area: b;
-
-    }
+.payersContainers {
+    border: 2px solid #000;
+    padding: 1.25rem 2rem;
 }
 
 .buttonContainer {
-    grid-area: c;
     display: flex;
     justify-content: right;
     

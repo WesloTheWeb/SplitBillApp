@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    partyMembers: []
+    partyMembers: ['Wesley', 'Laurin', 'Yutao', 'Matthew', 'Brittany']
 }
 
 const partySlice = createSlice({

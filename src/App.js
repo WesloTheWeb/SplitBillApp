@@ -21,7 +21,6 @@ function App() {
   function openAddToPartyModal() {
     dispatch(setModal('manageParty'));
     dispatch(toggleOverlay());
-
   }
 
   return (
@@ -31,7 +30,6 @@ function App() {
       }
       <nav >
         <TotalSum
-          amount={0.00}
         />
         <Button
           title='Manage Party'
@@ -50,3 +48,5 @@ function App() {
 };
 
 export default App;
+
+// TODO: Work on naming for files and organization. ActivityItem --> Bucket, at some point.

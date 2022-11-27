@@ -1,16 +1,29 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import classes from './TotalSum.module.scss';
 
 const { totalContainer, number } = classes;
 
-const TotalSum = ({ amount, edit }) => {
+const TotalSum = () => {
+
+    const totalAmountOwed = useSelector((state) => (state.expense))
+
+    const sum = Object.values(totalAmountOwed.expenses).reduce((acc, cV) => {
+        return acc + cV.costs;
+    }, 0);
+
+    const sanitizeString = (str) => {
+        return str.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+
     return (
         <>
             <div className={totalContainer}>
                 <p>
                     Total amount owed:
                 </p>
-                <span className={number}>${Math.round((amount * 100) / 100).toFixed(2)}</span>
+                {/* {sum} */}
+                <span className={number}>${sanitizeString(sum.toFixed(2))}</span>
             </div>
         </>
     );

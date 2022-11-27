@@ -50,7 +50,7 @@ const ManagePartyMembersForm = () => {
                     <div>
                         <input
                             type="text"
-                            placeholder="First Name"
+                            placeholder="Enter name"
                             {...register("partyMemberName", { required: "Input cannot be blank." })}
                         />
                         {errors.partyMemberName ?
