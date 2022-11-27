@@ -30,7 +30,6 @@ function App() {
       }
       <nav >
         <TotalSum
-          // amount={0.00}
         />
         <Button
           title='Manage Party'
