@@ -1,5 +1,8 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useForm, Controller } from "react-hook-form";
+// import ReactSelect from "react-select";
+import { setExpenseBucket } from '../../app/expenseSlice';
 import Button from '../../components/Button/Button';
 import NameTag from '../../components/NameTag/NameTag';
 import Party from '../Party/Party';
@@ -8,29 +11,60 @@ import classes from './ExpenseForm.module.scss';
 const { buttonContainer, payersContainers } = classes;
 
 const ExpenseForm = () => {
+    const dispatch = useDispatch();
     const expenseData = useSelector((state) => state.expense);
     const availablePartyMembers = useSelector((state) => state.party.partyMembers);
 
     const sanitizedArr = new Set(expenseData.payers);
+    const regEx = /\D/g;
+
+    // const newValues = availablePartyMembers.map((person) => { person });
+
+
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+
+    const onSubmit = (data) => {
+        dispatch(setExpenseBucket(data.expenses))
+        // reset({
+        //     expenseName: '',
+        //     personBeingPaid: '',
+        //     costs: '',
+        //     payers: [],
+        //     hostAsParticipant: true,
+        // }, {
+        //     keepErrors: true,
+        //     keepDirty: true,
+        // });
+    };
+
     return (
         <>
             <h2>Add Expense</h2>
-            <form>
+            <form onSubmit={handleSubmit(onSubmit)}>
                 <section className='formContainer'>
                     <div>
                         <label>Expense Name</label>
-                        <input type="text" placeholder="Expense Name" />
+                        <input
+                            type="text"
+                            placeholder="Expense Name"
+                            {...register("expenseName", { required: "Input cannot be blank." })}
+                        />
                         <label>Person being paid</label>
-                        {/* <input type="text" placeholder="Name" /> */}
                         <select>
-                            <option value="none" selected disabled hidden>Select a party member</option>
+                            <option value="none" defaultValue disabled hidden>Select a party member</option>
                             {availablePartyMembers.map((person, id) => {
                                 return (
                                     <option key={id}>{person}</option>
                                 );
                             })}
                         </select>
-
+                        {/* <Controller
+                            as={ReactSelect}
+                            options={options}
+                            name="ReactSelect"
+                            isClearable
+                            control={control}
+                        /> */}
                         <label>Cost of expense</label>
                         <input type="text" placeholder="$ total amount" />
                     </div>
@@ -53,7 +87,7 @@ const ExpenseForm = () => {
                 <section className='grid-side-by-side'>
                     <div>
                         <select>
-                            <option value="none" selected disabled hidden>Select a party member</option>
+                            <option value="none" defaultValue disabled hidden>Select a party member</option>
                             {availablePartyMembers.map((person, id) => {
                                 return (
                                     <option key={id}>{person}</option>
