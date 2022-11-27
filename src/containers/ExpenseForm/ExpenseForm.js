@@ -40,7 +40,7 @@ const ExpenseForm = () => {
     return (
         <>
             <h2>Add Expense</h2>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <form>
                 <section className='formContainer'>
                     <div>
                         <label>Expense Name</label>
