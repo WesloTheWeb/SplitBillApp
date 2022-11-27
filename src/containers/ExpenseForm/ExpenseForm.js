@@ -5,40 +5,65 @@ import NameTag from '../../components/NameTag/NameTag';
 import Party from '../Party/Party';
 import classes from './ExpenseForm.module.scss';
 
-const { expenseFormContainer, expenseFieldsContainer, expensePartyContainer, buttonContainer, payersContainers } = classes;
+const { buttonContainer, payersContainers } = classes;
 
 const ExpenseForm = () => {
-    const expenseData = useSelector((state) => state.expense)
+    const expenseData = useSelector((state) => state.expense);
+    const availablePartyMembers = useSelector((state) => state.party.partyMembers);
 
+    const sanitizedArr = new Set(expenseData.payers);
     return (
         <>
             <h2>Add Expense</h2>
-            <form className={expenseFormContainer}>
-                <section className={expenseFieldsContainer} >
-                    <label>Expense Name</label>
-                    <input type="text" placeholder="Expense Name" />
-                    <label>Person being paid</label>
-                    <input type="text" placeholder="Name" />
-                    <label>Cost of expense</label>
-                    <input type="text" placeholder="$ total amount" />
-                </section>
-                <section className={expensePartyContainer}>
-                    <label>Party Members</label>
-                    <Party />
+            <form>
+                <section className='formContainer'>
                     <div>
-                        <h3>People who are paying:</h3>
-                        <p>Drag the list from party to the field below or use the dropdown.</p>
+                        <label>Expense Name</label>
+                        <input type="text" placeholder="Expense Name" />
+                        <label>Person being paid</label>
+                        {/* <input type="text" placeholder="Name" /> */}
+                        <select>
+                            <option value="none" selected disabled hidden>Select a party member</option>
+                            {availablePartyMembers.map((person, id) => {
+                                return (
+                                    <option key={id}>{person}</option>
+                                );
+                            })}
+                        </select>
+
+                        <label>Cost of expense</label>
+                        <input type="text" placeholder="$ total amount" />
                     </div>
-                    <section className={payersContainers}>
-                        {expenseData.payers?.map((person) => {
+                    <div>
+                        <label>Party Members</label>
+                        <Party />
+                    </div>
+                </section>
+                <section>
+                    <h3>People who are paying:</h3>
+                    <p>Drag the list from party to the field below or use the dropdown.</p>
+                    <div className={payersContainers}>
+                        {sanitizedArr.payers?.map((person) => {
                             return (
                                 <NameTag name={person} />
                             )
                         })}
-                    </section>
+                    </div>
                 </section>
-                {/* TODO:  Shared state of what participants will be. Drag and drop from party. */}
+                <section className='grid-side-by-side'>
+                    <div>
+                        <select>
+                            <option value="none" selected disabled hidden>Select a party member</option>
+                            {availablePartyMembers.map((person, id) => {
+                                return (
+                                    <option key={id}>{person}</option>
+                                );
+                            })}
+                        </select>
+                    </div>
+                </section>
 
+                {/* TODO:  Shared state of what participants will be. Drag and drop from party. */}
                 <section className={buttonContainer}>
                     <Button
                         Btntype='cancel'

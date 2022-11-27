@@ -1,24 +1,5 @@
 @import './variables.scss';
 
-.App {
-  display: grid;
-  grid-template-columns: 1fr 5fr;
-  grid-template-areas:
-    "hud party party"
-    "hud grid grid"
-  ;
-  grid-gap: 1rem;
-}
-
-.poolContainer {
-  background: red;
-}
-
-.header-text {
-  text-align: center;
-  font-size: 2rem;
-}
-
 nav {
   grid-area: hud;
   display: flex;
@@ -42,12 +23,25 @@ button {
   }
 }
 
+.App {
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  grid-template-areas:
+    "hud party party"
+    "hud grid grid"
+  ;
+  grid-gap: 1rem;
+}
+
+.header-text {
+  text-align: center;
+  font-size: 2rem;
+}
+
 // Forms
 .formContainer {
-  border-radius: 5px;
   display: grid;
-  grid-template-areas: 'a b'
-    '. c';
+  grid-template-areas: 'a b';
   grid-gap: 2.75rem;
 
   button {
@@ -63,7 +57,12 @@ button {
   }
 
   input {
+    font-size: 1.2rem;
     margin: 0 0 1rem 0;
+  }
+
+  select {
+    font-size: 1.2rem;
   }
 
   .sideBySide {
@@ -91,7 +90,12 @@ button {
 
     }
   }
+}
 
+.grid-side-by-side {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: baseline;
 }
 
 .buttonContainer {
