@@ -4,21 +4,21 @@ const initialState = {
     expenses: [
         {
             expenseName: 'Korean BBQ',
-            personBeingPaid: 'Wesley',
+            personBeingPaid: 'Claude',
             cost: 140,
-            payers: ['Wesley', 'Laurin'],
+            payers: ['Claude', 'Hilda'],
         },
         {
             expenseName: 'Drinks',
-            personBeingPaid: 'Brittany',
+            personBeingPaid: 'Marianne',
             cost: 80,
-            payers: ['Wesley', 'Laurin', 'Bawi', 'Brittany', 'Erik', 'Matthew', 'Yutao', 'Raymond', 'Hien'],
+            payers: ['Marianne', 'Claude', 'Hilda', 'Ingrid', 'Huebert', 'Flayn', 'Byleth', 'Ferdinand', 'Victor'],
         },
         {
             expenseName: 'Michelin',
-            personBeingPaid: 'Laurin',
+            personBeingPaid: 'Hilda',
             cost: 1500,
-            payers: ['Wesley', 'Laurin', 'Bawi', 'Brittany', 'Erik'],
+            payers: ['Hilda', 'Marianne', 'Ingrid', 'Huebert', 'Flayn'],
         },
     ]
 }
