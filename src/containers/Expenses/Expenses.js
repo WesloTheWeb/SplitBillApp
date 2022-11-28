@@ -19,7 +19,6 @@ const Expenses = () => {
                         personPaid={activity.personBeingPaid}
                         cost={activity.cost}
                         participants={activity.payers}
-                        includeHost={activity.hostAsParticipant}
                     />
                 )
             })}

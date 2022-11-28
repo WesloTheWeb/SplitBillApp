@@ -7,21 +7,18 @@ const initialState = {
             personBeingPaid: 'Wesley',
             cost: 140,
             payers: ['Wesley', 'Laurin'],
-            hostAsParticipant: true,
         },
         {
             expenseName: 'Drinks',
             personBeingPaid: 'Brittany',
             cost: 80,
             payers: ['Wesley', 'Laurin', 'Bawi', 'Brittany', 'Erik', 'Matthew', 'Yutao', 'Raymond', 'Hien'],
-            hostAsParticipant: true,
         },
         {
             expenseName: 'Michelin',
             personBeingPaid: 'Laurin',
             cost: 1500,
             payers: ['Wesley', 'Laurin', 'Bawi', 'Brittany', 'Erik'],
-            hostAsParticipant: true,
         },
     ]
 }

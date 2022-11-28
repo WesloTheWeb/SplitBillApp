@@ -4,7 +4,7 @@ import classes from './ActivityItem.module.scss';
 
 const { activityContainer, headerRow, participantsRow, totalExpenseRow, dividedSumRow } = classes;
 
-const ActivityItem = ({ title, personPaid, participants, includeHost, cost }) => {
+const ActivityItem = ({ title, personPaid, participants, cost }) => {
 
     return (
         <div className={activityContainer}>
@@ -23,7 +23,6 @@ const ActivityItem = ({ title, personPaid, participants, includeHost, cost }) =>
                     )
                 })}
             </section>
-            <p>Host included?: {includeHost ? 'yes' : 'no'} </p>
             <section className={totalExpenseRow}>
                 <span>Total Cost: ${cost.toFixed(2)}</span>
             </section>

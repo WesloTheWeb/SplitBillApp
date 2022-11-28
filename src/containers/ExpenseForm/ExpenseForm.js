@@ -29,7 +29,6 @@ const ExpenseForm = () => {
             personBeingPaid: '',
             costs: '',
             payers: [],
-            hostAsParticipant: true,
         }, {
             keepErrors: true,
             keepDirty: true,
