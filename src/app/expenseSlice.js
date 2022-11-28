@@ -4,24 +4,21 @@ const initialState = {
     expenses: [
         {
             expenseName: 'Korean BBQ',
-            personBeingPaid: 'Wesley',
-            costs: 140,
-            payers: ['Wesley', 'Laurin'],
-            hostAsParticipant: true,
+            personBeingPaid: 'Claude',
+            cost: 140,
+            payers: ['Claude', 'Hilda'],
         },
         {
-            expenseName: 'Drinks',
-            personBeingPaid: 'Brittany',
-            costs: 80,
-            payers: ['Wesley', 'Laurin', 'Bawi', 'Brittany', 'Erik', 'Matthew', 'Yutao', 'Raymond', 'Hien'],
-            hostAsParticipant: true,
+            expenseName: 'Steakhouse',
+            personBeingPaid: 'Marianne',
+            cost: 1500.43,
+            payers: ['Marianne', 'Claude', 'Hilda', 'Ingrid', 'Huebert', 'Flayn', 'Byleth', 'Ferdinand', 'Victor'],
         },
         {
-            expenseName: 'Michelin',
-            personBeingPaid: 'Laurin',
-            costs: 1500,
-            payers: ['Wesley', 'Laurin', 'Bawi', 'Brittany', 'Erik'],
-            hostAsParticipant: true,
+            expenseName: 'Round of drinks at the Merchant',
+            personBeingPaid: 'Hilda',
+            cost: 98.5,
+            payers: ['Hilda', 'Marianne', 'Ingrid', 'Huebert', 'Flayn'],
         },
     ]
 }
@@ -35,7 +32,7 @@ const expenseSlice = createSlice({
             state.expenses.push({
                 expenseName: action.payload,
                 personBeingPaid: action.payload,
-                costs: action.payload,
+                cost: action.payload,
                 payers: action.payload,
                 hostAsParticipant: action.payload,
             });

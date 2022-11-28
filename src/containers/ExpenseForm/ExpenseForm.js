@@ -1,12 +1,15 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useForm, Controller } from "react-hook-form";
-// import ReactSelect from "react-select";
+import { useForm } from "react-hook-form";
 import { setExpenseBucket } from '../../app/expenseSlice';
 import Button from '../../components/Button/Button';
 import NameTag from '../../components/NameTag/NameTag';
 import Party from '../Party/Party';
 import classes from './ExpenseForm.module.scss';
+
+// TODO: Need a way to register an input of an array, pushing each person into it (Payers).
+// TODO: Might be better UX to do a search field to select people than dropdown. I.e type first few letters of available party
+// member and it will populate the field.
 
 const { buttonContainer, payersContainers } = classes;
 
@@ -16,31 +19,28 @@ const ExpenseForm = () => {
     const availablePartyMembers = useSelector((state) => state.party.partyMembers);
 
     const sanitizedArr = new Set(expenseData.payers);
-    const regEx = /\D/g;
-
-    // const newValues = availablePartyMembers.map((person) => { person });
-
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
     const onSubmit = (data) => {
         dispatch(setExpenseBucket(data.expenses))
-        // reset({
-        //     expenseName: '',
-        //     personBeingPaid: '',
-        //     costs: '',
-        //     payers: [],
-        //     hostAsParticipant: true,
-        // }, {
-        //     keepErrors: true,
-        //     keepDirty: true,
-        // });
+        reset({
+            expenseName: '',
+            personBeingPaid: '',
+            costs: '',
+            payers: [],
+        }, {
+            keepErrors: true,
+            keepDirty: true,
+        });
     };
 
     return (
         <>
             <h2>Add Expense</h2>
-            <form>
+            <form
+                onSubmit={handleSubmit(onSubmit)}
+            >
                 <section className='formContainer'>
                     <div>
                         <label>Expense Name</label>
@@ -58,15 +58,12 @@ const ExpenseForm = () => {
                                 );
                             })}
                         </select>
-                        {/* <Controller
-                            as={ReactSelect}
-                            options={options}
-                            name="ReactSelect"
-                            isClearable
-                            control={control}
-                        /> */}
                         <label>Cost of expense</label>
-                        <input type="text" placeholder="$ total amount" />
+                        <input
+                            type="text"
+                            placeholder="$ total amount"
+                            {...register("cost", { required: "Cost cannot be blank." })}
+                        />
                     </div>
                     <div>
                         <label>Party Members</label>
@@ -74,6 +71,7 @@ const ExpenseForm = () => {
                     </div>
                 </section>
                 <section>
+                    {/* TODO:  Shared state of what participants will be. Drag and drop from party. */}
                     <h3>People who are paying:</h3>
                     <p>Drag the list from party to the field below or use the dropdown.</p>
                     <div className={payersContainers}>
@@ -84,20 +82,6 @@ const ExpenseForm = () => {
                         })}
                     </div>
                 </section>
-                <section className='grid-side-by-side'>
-                    <div>
-                        <select>
-                            <option value="none" defaultValue disabled hidden>Select a party member</option>
-                            {availablePartyMembers.map((person, id) => {
-                                return (
-                                    <option key={id}>{person}</option>
-                                );
-                            })}
-                        </select>
-                    </div>
-                </section>
-
-                {/* TODO:  Shared state of what participants will be. Drag and drop from party. */}
                 <section className={buttonContainer}>
                     <Button
                         Btntype='cancel'
