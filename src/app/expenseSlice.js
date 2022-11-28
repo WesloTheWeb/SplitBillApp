@@ -9,15 +9,15 @@ const initialState = {
             payers: ['Claude', 'Hilda'],
         },
         {
-            expenseName: 'Drinks',
+            expenseName: 'Steakhouse',
             personBeingPaid: 'Marianne',
-            cost: 80,
+            cost: 1500.43,
             payers: ['Marianne', 'Claude', 'Hilda', 'Ingrid', 'Huebert', 'Flayn', 'Byleth', 'Ferdinand', 'Victor'],
         },
         {
-            expenseName: 'Michelin',
+            expenseName: 'Round of drinks at the Merchant',
             personBeingPaid: 'Hilda',
-            cost: 1500,
+            cost: 98.5,
             payers: ['Hilda', 'Marianne', 'Ingrid', 'Huebert', 'Flayn'],
         },
     ]
