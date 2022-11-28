@@ -5,21 +5,21 @@ const initialState = {
         {
             expenseName: 'Korean BBQ',
             personBeingPaid: 'Wesley',
-            costs: 140,
+            cost: 140,
             payers: ['Wesley', 'Laurin'],
             hostAsParticipant: true,
         },
         {
             expenseName: 'Drinks',
             personBeingPaid: 'Brittany',
-            costs: 80,
+            cost: 80,
             payers: ['Wesley', 'Laurin', 'Bawi', 'Brittany', 'Erik', 'Matthew', 'Yutao', 'Raymond', 'Hien'],
             hostAsParticipant: true,
         },
         {
             expenseName: 'Michelin',
             personBeingPaid: 'Laurin',
-            costs: 1500,
+            cost: 1500,
             payers: ['Wesley', 'Laurin', 'Bawi', 'Brittany', 'Erik'],
             hostAsParticipant: true,
         },
@@ -35,7 +35,7 @@ const expenseSlice = createSlice({
             state.expenses.push({
                 expenseName: action.payload,
                 personBeingPaid: action.payload,
-                costs: action.payload,
+                cost: action.payload,
                 payers: action.payload,
                 hostAsParticipant: action.payload,
             });

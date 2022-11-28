@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useForm, Controller } from "react-hook-form";
-// import ReactSelect from "react-select";
+import { useForm } from "react-hook-form";
 import { setExpenseBucket } from '../../app/expenseSlice';
 import Button from '../../components/Button/Button';
 import NameTag from '../../components/NameTag/NameTag';
@@ -19,28 +18,31 @@ const ExpenseForm = () => {
     const regEx = /\D/g;
 
     // const newValues = availablePartyMembers.map((person) => { person });
+    const options = []
 
 
-    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, formState: { errors }, control } = useForm();
 
     const onSubmit = (data) => {
         dispatch(setExpenseBucket(data.expenses))
-        // reset({
-        //     expenseName: '',
-        //     personBeingPaid: '',
-        //     costs: '',
-        //     payers: [],
-        //     hostAsParticipant: true,
-        // }, {
-        //     keepErrors: true,
-        //     keepDirty: true,
-        // });
+        reset({
+            expenseName: '',
+            personBeingPaid: '',
+            costs: '',
+            payers: [],
+            hostAsParticipant: true,
+        }, {
+            keepErrors: true,
+            keepDirty: true,
+        });
     };
 
     return (
         <>
             <h2>Add Expense</h2>
-            <form>
+            <form
+                onSubmit={handleSubmit(onSubmit)}
+            >
                 <section className='formContainer'>
                     <div>
                         <label>Expense Name</label>
@@ -58,15 +60,13 @@ const ExpenseForm = () => {
                                 );
                             })}
                         </select>
-                        {/* <Controller
-                            as={ReactSelect}
-                            options={options}
-                            name="ReactSelect"
-                            isClearable
-                            control={control}
-                        /> */}
+              
                         <label>Cost of expense</label>
-                        <input type="text" placeholder="$ total amount" />
+                        <input 
+                            type="text" 
+                            placeholder="$ total amount" 
+                            {...register("cost", { required: "Cost cannot be blank." })}
+                            />
                     </div>
                     <div>
                         <label>Party Members</label>

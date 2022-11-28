@@ -9,7 +9,7 @@ const TotalSum = () => {
     const totalAmountOwed = useSelector((state) => (state.expense))
 
     const sum = Object.values(totalAmountOwed.expenses).reduce((acc, cV) => {
-        return acc + cV.costs;
+        return acc + cV.cost;
     }, 0);
 
     const sanitizeString = (str) => {

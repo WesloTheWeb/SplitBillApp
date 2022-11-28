@@ -17,7 +17,7 @@ const Expenses = () => {
                         key={activity.expenseName}
                         title={activity.expenseName}
                         personPaid={activity.personBeingPaid}
-                        cost={activity.costs}
+                        cost={activity.cost}
                         participants={activity.payers}
                         includeHost={activity.hostAsParticipant}
                     />
