@@ -71,6 +71,7 @@ const ExpenseForm = () => {
                     </div>
                 </section>
                 <section>
+                    {/* TODO:  Shared state of what participants will be. Drag and drop from party. */}
                     <h3>People who are paying:</h3>
                     <p>Drag the list from party to the field below or use the dropdown.</p>
                     <div className={payersContainers}>
@@ -81,20 +82,6 @@ const ExpenseForm = () => {
                         })}
                     </div>
                 </section>
-                <section className='grid-side-by-side'>
-                    <div>
-                        <select>
-                            <option value="none" defaultValue disabled hidden>Select a party member</option>
-                            {availablePartyMembers.map((person, id) => {
-                                return (
-                                    <option key={id}>{person}</option>
-                                );
-                            })}
-                        </select>
-                    </div>
-                </section>
-
-                {/* TODO:  Shared state of what participants will be. Drag and drop from party. */}
                 <section className={buttonContainer}>
                     <Button
                         Btntype='cancel'
