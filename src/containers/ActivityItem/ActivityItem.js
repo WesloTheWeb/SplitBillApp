@@ -10,9 +10,10 @@ const ActivityItem = ({ title, personPaid, participants, includeHost, cost }) =>
         <div className={activityContainer}>
             <section className={headerRow}>
                 <h3>{title}</h3>
-                <h4>{personPaid}</h4>
+                <span>Please pay to: <b>{personPaid}</b></span>
             </section>
             <section className={participantsRow}>
+                <h4>Participants</h4>
                 {/* TODO: Should have its own state of participants separate from the party state */}
                 {participants?.map((person) => {
                     return (
@@ -24,7 +25,7 @@ const ActivityItem = ({ title, personPaid, participants, includeHost, cost }) =>
             </section>
             <p>Host included?: {includeHost ? 'yes' : 'no'} </p>
             <section className={totalExpenseRow}>
-                ${cost.toFixed(2)}
+                <span>Total Cost: ${cost.toFixed(2)}</span>
             </section>
             <section className={dividedSumRow}>
                 -${(cost / participants.length).toFixed(2)} / Person

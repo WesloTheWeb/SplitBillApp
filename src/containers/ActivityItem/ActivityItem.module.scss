@@ -2,11 +2,22 @@
 
 .activityContainer {
     border: 2px solid #000;
+    border-radius: 25px;
     text-align: center;
     box-sizing: content-box;
     font-size: 1.75rem;
     font-weight: bold;
     overflow: hidden;
+
+    h3, h4 {
+        margin: 0;
+    }
+
+    span {
+        display: block;
+        font-weight: normal;
+        margin-bottom: 1rem;
+    }
 }
 
 .headerRow {
@@ -18,16 +29,23 @@
 }
 
 .participantsRow {
+    border-top: 2px solid #000;
+    border-bottom: 2px solid #000;
     display: flex;
     flex-direction: column;
-    background-color: $navyBlue;
-    padding: 2rem;
+    background-color: $participantsPool;
+    padding: 1rem;
+    padding-top: 0.25rem;
 }
 
 .totalExpenseRow {
     background-color: $gold;
-    padding: 1rem 0;
+    padding: .5rem 0;
     font-size: 2rem;
+
+    span {
+        font-weight: bold;
+    }
 }
 
 .dividedSumRow {

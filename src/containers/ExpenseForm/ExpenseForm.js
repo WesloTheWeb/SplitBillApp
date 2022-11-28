@@ -7,6 +7,10 @@ import NameTag from '../../components/NameTag/NameTag';
 import Party from '../Party/Party';
 import classes from './ExpenseForm.module.scss';
 
+// TODO: Need a way to register an input of an array, pushing each person into it (Payers).
+// TODO: Might be better UX to do a search field to select people than dropdown. I.e type first few letters of available party
+// member and it will populate the field.
+
 const { buttonContainer, payersContainers } = classes;
 
 const ExpenseForm = () => {
@@ -60,7 +64,6 @@ const ExpenseForm = () => {
                                 );
                             })}
                         </select>
-              
                         <label>Cost of expense</label>
                         <input 
                             type="text" 
