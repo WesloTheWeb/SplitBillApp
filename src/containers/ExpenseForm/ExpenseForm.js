@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import { setExpenseBucket } from '../../app/expenseSlice';
 import Button from '../../components/Button/Button';
 import NameTag from '../../components/NameTag/NameTag';
@@ -26,6 +26,10 @@ const ExpenseForm = () => {
 
 
     const { register, handleSubmit, reset, formState: { errors }, control } = useForm();
+    const { fields, append, prepend, remove, swap, move, insert } = useFieldArray({
+        control, // control props comes from useForm (optional: if you are using FormContext)
+        name: "test", // unique name for your Field Array
+    });
 
     const onSubmit = (data) => {
         dispatch(setExpenseBucket(data.expenses))
@@ -56,7 +60,7 @@ const ExpenseForm = () => {
                             {...register("expenseName", { required: "Input cannot be blank." })}
                         />
                         <label>Person being paid</label>
-                        <select>
+                        <select ref={register}>
                             <option value="none" defaultValue disabled hidden>Select a party member</option>
                             {availablePartyMembers.map((person, id) => {
                                 return (
@@ -65,11 +69,11 @@ const ExpenseForm = () => {
                             })}
                         </select>
                         <label>Cost of expense</label>
-                        <input 
-                            type="text" 
-                            placeholder="$ total amount" 
+                        <input
+                            type="text"
+                            placeholder="$ total amount"
                             {...register("cost", { required: "Cost cannot be blank." })}
-                            />
+                        />
                     </div>
                     <div>
                         <label>Party Members</label>
