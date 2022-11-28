@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray, Controller } from "react-hook-form";
+import ReactSelect from 'react-select';
 import { setExpenseBucket } from '../../app/expenseSlice';
 import Button from '../../components/Button/Button';
 import NameTag from '../../components/NameTag/NameTag';
@@ -20,7 +21,13 @@ const ExpenseForm = () => {
 
     const sanitizedArr = new Set(expenseData.payers);
 
-    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, formState: { errors }, control } = useForm();
+    const { fields, append, prepend, remove, swap, move, insert } = useFieldArray({
+        control, // control props comes from useForm (optional: if you are using FormContext)
+        name: "payers", // unique name for your Field Array
+    });
+
+    const options = [];
 
     const onSubmit = (data) => {
         dispatch(setExpenseBucket(data.expenses))
@@ -50,14 +57,21 @@ const ExpenseForm = () => {
                             {...register("expenseName", { required: "Input cannot be blank." })}
                         />
                         <label>Person being paid</label>
-                        <select>
+                        <Controller
+                            as={ReactSelect}
+                            options={options}
+                            name="ReactSelect"
+                            isClearable
+                            control={control}
+                        />
+                        {/* <select>
                             <option value="none" defaultValue disabled hidden>Select a party member</option>
                             {availablePartyMembers.map((person, id) => {
                                 return (
                                     <option key={id}>{person}</option>
                                 );
                             })}
-                        </select>
+                        </select> */}
                         <label>Cost of expense</label>
                         <input
                             type="text"
