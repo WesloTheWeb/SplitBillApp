@@ -12,7 +12,6 @@
     "react-hook-form": "^7.39.5",
     "react-redux": "^8.0.5",
     "react-scripts": "5.0.1",
-    "react-select": "^5.6.1",
     "sass": "^1.54.9",
     "web-vitals": "^2.1.4"
   },
