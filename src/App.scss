@@ -111,3 +111,21 @@ button {
   }
 
 }
+
+.addingPayersContainer {
+  display: flex;
+  align-items: flex-start;
+
+  div {
+    background-color: $navyBlue;
+    color: #fff;
+    font-size: 1.25rem;
+    text-align: center;
+    padding: 0 0.85rem 0 0.25rem;
+
+    &:hover {
+      cursor: pointer;
+      opacity: .85;
+    }
+  }
+}

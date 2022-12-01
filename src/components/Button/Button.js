@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './Button.module.scss';
 
-const { totalSumButton, cancelCTA, addCTA, resetCTA, doneCTA } = classes;
+const { totalSumButton, cancelCTA, addCTA, resetCTA, doneCTA, additionCTA } = classes;
 
 const Button = ({ title, action, Btntype }) => {
 
@@ -10,7 +10,8 @@ const Button = ({ title, action, Btntype }) => {
         cancel: cancelCTA,
         addMember: addCTA,
         done: doneCTA,
-        clearParty: resetCTA
+        clearParty: resetCTA,
+        addition: additionCTA
     }
 
     const variants = (Btntype) => {
@@ -29,7 +30,10 @@ const Button = ({ title, action, Btntype }) => {
 
             case 'clearParty':
                 return buttonTypes.clearParty;
-            }
+
+            case 'addition':
+                return buttonTypes.addition;
+        }
     };
 
     return (

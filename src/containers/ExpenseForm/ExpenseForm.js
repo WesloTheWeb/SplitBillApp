@@ -68,10 +68,23 @@ const ExpenseForm = () => {
                             placeholder="$ total amount"
                             {...register("cost", { required: "Cost cannot be blank." })}
                         />
+                        {/* TODO: Create input and button so user type name and adds to party. */}
+                        <label>Participants</label>
+                        <span>The textbox below will show a list of available party members, whom you can add that will be the ones paying for this expense.</span>
+                        <div className='addingPayersContainer'>
+                            <input
+                                type="text"
+                                placeholder='Person(s) name'
+                                {...register("payers", { required: "At least one other person is required here. " })}
+                            />
+                            <div>+ Add</div>
+                        </div>
                     </div>
                     <div>
                         <label>Party Members</label>
-                        <Party />
+                        <Party
+                            minified
+                        />
                     </div>
                 </section>
                 <section>
