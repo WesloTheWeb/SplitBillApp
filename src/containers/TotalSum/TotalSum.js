@@ -23,7 +23,7 @@ const TotalSum = () => {
                     Total amount owed:
                 </p>
                 {/* {sum} */}
-                <span className={number}>${sanitizeString(sum.toFixed(2))}</span>
+                <span className={number}>${sanitizeString(sum?.toFixed(2))}</span>
             </div>
         </>
     );

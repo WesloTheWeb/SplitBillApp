@@ -1,7 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from "react-hook-form";
-import { setExpenseBucket } from '../../app/expenseSlice';
+import { setExpenseBucket, addPersonToPayers } from '../../app/expenseSlice';
 import Button from '../../components/Button/Button';
 import NameTag from '../../components/NameTag/NameTag';
 import Party from '../Party/Party';
@@ -24,19 +24,35 @@ const ExpenseForm = () => {
 
     // const onSubmit = (data) => {
     //     dispatch(setExpenseBucket(data.expenses))
-    //     reset({
-    //         expenseName: '',
-    //         personBeingPaid: '',
-    //         costs: '',
-    //         payers: [],
-    //     }, {
-    //         keepErrors: true,
-    //         keepDirty: true,
-    //     });
+    //     // reset({
+    //     //     expenseName: '',
+    //     //     personBeingPaid: '',
+    //     //     costs: '',
+    //     //     payers: [],
+    //     // }, {
+    //     //     keepErrors: true,
+    //     //     keepDirty: true,
+    //     // });
     // };
 
     const onSubmit = (data) => {
         console.log(data);
+    }
+
+    const res = [];
+
+    // TODO: We need to edit the react hook form payload before dispatching to state
+    // Since we are editing our final data's array pushing people and later removing people.
+   // TODO: hook to the input value.
+   // User types name, hits button, THEN name gets added to payers: [],
+   // problem is its intermediate interim step.
+    const addPayers = (person) => {
+        // dispatch(addPersonToPayers(data.payers));
+        // data.payers.push(person);
+        res.push("person");
+
+        handleSubmit(onSubmit);
+        console.log(res);
     }
 
     return (
@@ -77,7 +93,9 @@ const ExpenseForm = () => {
                                 placeholder='Person(s) name'
                                 {...register("payers", { required: "At least one other person is required here. " })}
                             />
-                            <div>+ Add</div>
+                            <div
+                                onClick={addPayers}
+                            >+ Add</div>
                         </div>
                     </div>
                     <div>
