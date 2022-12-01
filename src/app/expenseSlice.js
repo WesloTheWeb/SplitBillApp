@@ -34,7 +34,6 @@ const expenseSlice = createSlice({
                 personBeingPaid: action.payload,
                 cost: action.payload,
                 payers: action.payload,
-                hostAsParticipant: action.payload,
             });
         },
 

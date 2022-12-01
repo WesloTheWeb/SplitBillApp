@@ -1,7 +1,8 @@
-import React from 'react';
+import { React, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from "react-hook-form";
 import { setExpenseBucket, addPersonToPayers } from '../../app/expenseSlice';
+import { toggleOverlay } from '../../app/overlaySlice';
 import Button from '../../components/Button/Button';
 import NameTag from '../../components/NameTag/NameTag';
 import Party from '../Party/Party';
@@ -14,11 +15,12 @@ import classes from './ExpenseForm.module.scss';
 const { buttonContainer, payersContainers } = classes;
 
 const ExpenseForm = () => {
+    const [peopleArr, setPeopleArr] = useState([])
     const dispatch = useDispatch();
     const expenseData = useSelector((state) => state.expense);
     const availablePartyMembers = useSelector((state) => state.party.partyMembers);
 
-    const sanitizedArr = new Set(expenseData.payers);
+    // const sanitizedArr = [new Set(expenseData.payers);]
 
     const { register, handleSubmit, reset, formState: { errors }, control } = useForm();
 
@@ -36,23 +38,37 @@ const ExpenseForm = () => {
     // };
 
     const onSubmit = (data) => {
+        let count = 0;
         console.log(data);
-    }
+        // a check so if an object key val is missing do not close the modal
+        // TODO: Possible check, we know the number of objects supposed to be filled.
+        for (let property in data) {
+            if (data.hasOwnProperty(property)) {
+                count++;
+            };
+        };
 
-    const res = [];
+        if (count === 4 && data.payers.length > 0) { // string for now but needs to be an array
+            console.log('form submitted')
+            dispatch(toggleOverlay())
+        }
+
+    }
 
     // TODO: We need to edit the react hook form payload before dispatching to state
     // Since we are editing our final data's array pushing people and later removing people.
-   // TODO: hook to the input value.
-   // User types name, hits button, THEN name gets added to payers: [],
-   // problem is its intermediate interim step.
-    const addPayers = (person) => {
+    // TODO: hook to the input value.
+    // User types name, hits button, THEN name gets added to payers: [],
+    // problem is its intermediate interim step.
+    // we are 2 data layers deep. sub-data --> data --> dispatch(data)
+
+    const addPayers = () => {
         // dispatch(addPersonToPayers(data.payers));
         // data.payers.push(person);
-        res.push("person");
+        setPeopleArr([...peopleArr, 'clicked']);
 
         handleSubmit(onSubmit);
-        console.log(res);
+        // console.log(peopleArr);
     }
 
     return (
@@ -110,9 +126,9 @@ const ExpenseForm = () => {
                     <h3>People who are paying:</h3>
                     <p>Drag the list from party to the field below or use the dropdown.</p>
                     <div className={payersContainers}>
-                        {sanitizedArr.payers?.map((person) => {
+                        {peopleArr?.map((person, idx) => {
                             return (
-                                <NameTag name={person} />
+                                <span key={idx}>{person}</span>
                             )
                         })}
                     </div>
@@ -130,3 +146,13 @@ const ExpenseForm = () => {
 };
 
 export default ExpenseForm;
+
+/* PLAN.
+1. Combine useState to act as a dynamic array to add or remove people.
+2. Each array item from that dynamic array will be tied to a key (i.e payers)
+3. Once form is completed, handle submit *should* load all the elements in that payers array into one array
+sent in with the "data" from the completed form.
+4. Once the data is finished, pass it to the dispatch RTK hook as the payload that should update the global state (outside).
+
+
+*/
