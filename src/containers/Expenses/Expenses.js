@@ -18,7 +18,7 @@ const Expenses = () => {
                         title={activity.expenseName}
                         personPaid={activity.personBeingPaid}
                         cost={activity.cost}
-                        participants={activity.payers}
+                        payers={activity.payers}
                     />
                 )
             })}

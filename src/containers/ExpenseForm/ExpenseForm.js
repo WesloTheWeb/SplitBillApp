@@ -38,6 +38,7 @@ const ExpenseForm = () => {
     // };
 
     const onSubmit = (data) => {
+        parseInt(data.cost); // need to turn string into int
         let count = 0;
         console.log(data);
         // a check so if an object key val is missing do not close the modal
@@ -49,7 +50,8 @@ const ExpenseForm = () => {
         };
 
         if (count === 4 && data.payers.length > 0) { // string for now but needs to be an array
-            console.log('form submitted')
+            console.log(typeof data.cost)
+            dispatch(setExpenseBucket(data))
             dispatch(toggleOverlay())
         }
 
@@ -67,6 +69,8 @@ const ExpenseForm = () => {
         // data.payers.push(person);
         setPeopleArr([...peopleArr, 'clicked']);
 
+        // TODO: clear text field after each hit. 
+        // TODO: make sure React Hook Form registers the array, possibly done via ref prop. See example
         handleSubmit(onSubmit);
         // console.log(peopleArr);
     }
@@ -96,9 +100,10 @@ const ExpenseForm = () => {
                         </select>
                         <label>Cost of expense</label>
                         <input
-                            type="text"
+                            type="number"
                             placeholder="$ total amount"
-                            {...register("cost", { required: "Cost cannot be blank." })}
+                            {...register("cost", { required: "Cost cannot be blank.",     valueAsNumber: true,
+                        })}
                         />
                         {/* TODO: Create input and button so user type name and adds to party. */}
                         <label>Participants</label>
