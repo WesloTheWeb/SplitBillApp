@@ -4,7 +4,7 @@ import classes from './ActivityItem.module.scss';
 
 const { activityContainer, headerRow, participantsRow, totalExpenseRow, dividedSumRow } = classes;
 
-const ActivityItem = ({ title, personPaid, payers, cost }) => (
+const ActivityItem = ({ title, personPaid, payers, cost, payNames }) => (
     <div className={activityContainer}>
         <section className={headerRow}>
             <h3>{title}</h3>
@@ -12,22 +12,21 @@ const ActivityItem = ({ title, personPaid, payers, cost }) => (
         </section>
         <section className={participantsRow}>
             <h4>payers</h4>
-            {/* TODO: Should have its own state of payers separate from the party state */}
+            {/* Using the payers redux state separate from party members */}
             {payers?.map((person) => {
                 return (
                     <NameTag
+                        payNames
                         key={person}
                         name={person} />
                 );
             })}
         </section>
         <section className={totalExpenseRow}>
-            {/* <span>Total Cost: ${cost.toFixed(2)}</span> */}
-            <span>Total Cost: ${cost}</span>
+            <span>Total Cost: ${cost.toFixed(2)}</span>
         </section>
         <section className={dividedSumRow}>
-            {/* -${(cost / payers.length).toFixed(2)} / Person */}
-            -${(cost / payers.length)} / Person
+            -${(cost / payers.length).toFixed(2)} / Person
         </section>
     </div>
 );

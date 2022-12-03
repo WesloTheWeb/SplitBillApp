@@ -30,11 +30,6 @@ const expenseSlice = createSlice({
     reducers: {
         setExpenseBucket: (state, action) => {
             state.expenses.push(action.payload);
-        },
-
-        addPersonToPayers: (state, action) => {
-            state.payers(...state, action.payload)
-            console.log(state.payers);
         }
     }
 });

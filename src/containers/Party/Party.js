@@ -5,7 +5,7 @@ import classes from './Party.module.scss';
 
 const { poolBase, poolContainer, minifiedPoolContainer, } = classes;
 
-const Party = ({minified}) => {
+const Party = ({ minified }) => {
 
     const currentParty = useSelector((state) => state.party.partyMembers);
 
