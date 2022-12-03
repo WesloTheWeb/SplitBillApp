@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React, useState, useRef } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from "react-hook-form";
 import { setExpenseBucket, addPersonToPayers } from '../../app/expenseSlice';
@@ -15,14 +15,31 @@ import classes from './ExpenseForm.module.scss';
 const { buttonContainer, payersContainers } = classes;
 
 const ExpenseForm = () => {
-    const [peopleArr, setPeopleArr] = useState([])
+    const [peopleArr, setPeopleArr] = useState([]);
+    const [counter, setCounter] = useState(0);
+
+    const [payerNameValue, setPayerNameValue] = useState('')
+    const [updated, setUpdated] = useState(payerNameValue);
+
     const dispatch = useDispatch();
     const expenseData = useSelector((state) => state.expense);
     const availablePartyMembers = useSelector((state) => state.party.partyMembers);
 
     // const sanitizedArr = [new Set(expenseData.payers);]
 
-    const { register, handleSubmit, reset, formState: { errors }, control } = useForm();
+
+    const { register, handleSubmit, reset, formState: { errors }, control } = useForm({
+        // defaultValues: {
+        //     cost: 0,
+        //     expenseName: '',
+        //     payers: [],
+        //     checkbox: [],
+        // }
+    });
+    const { onChange, onBlur, name, ref } = register('payers');
+
+    const registerPayer = useRef(register);
+
 
     // const onSubmit = (data) => {
     //     dispatch(setExpenseBucket(data.expenses))
@@ -54,8 +71,11 @@ const ExpenseForm = () => {
             dispatch(setExpenseBucket(data))
             dispatch(toggleOverlay())
         }
-
     }
+
+    const handleChange = (event) => {
+        setPayerNameValue(event.target.value);
+    };
 
     // TODO: We need to edit the react hook form payload before dispatching to state
     // Since we are editing our final data's array pushing people and later removing people.
@@ -64,16 +84,19 @@ const ExpenseForm = () => {
     // problem is its intermediate interim step.
     // we are 2 data layers deep. sub-data --> data --> dispatch(data)
 
-    const addPayers = () => {
+    const addPayers = (evnt) => {
         // dispatch(addPersonToPayers(data.payers));
         // data.payers.push(person);
-        setPeopleArr([...peopleArr, 'clicked']);
-
+        setPeopleArr([...peopleArr, payerNameValue]);
+        // setCounter((prevCounter) => prevCounter + 1);
+        setUpdated(evnt.target.value);
         // TODO: clear text field after each hit. 
         // TODO: make sure React Hook Form registers the array, possibly done via ref prop. See example
-        handleSubmit(onSubmit);
+        // handleSubmit(onSubmit);
         // console.log(peopleArr);
+        console.log(peopleArr);
     }
+
 
     return (
         <>
@@ -102,8 +125,9 @@ const ExpenseForm = () => {
                         <input
                             type="number"
                             placeholder="$ total amount"
-                            {...register("cost", { required: "Cost cannot be blank.",     valueAsNumber: true,
-                        })}
+                            {...register("cost", {
+                                required: "Cost cannot be blank.", valueAsNumber: true,
+                            })}
                         />
                         {/* TODO: Create input and button so user type name and adds to party. */}
                         <label>Participants</label>
@@ -111,8 +135,13 @@ const ExpenseForm = () => {
                         <div className='addingPayersContainer'>
                             <input
                                 type="text"
+                                // ref={registerPayer}
+                                // {...register("payers")}
+                                // {...register("payers", {
+                                //     required: "Payers cannot be blank."
+                                // })}
+                                onChange={handleChange}
                                 placeholder='Person(s) name'
-                                {...register("payers", { required: "At least one other person is required here. " })}
                             />
                             <div
                                 onClick={addPayers}
@@ -132,8 +161,17 @@ const ExpenseForm = () => {
                     <p>Drag the list from party to the field below or use the dropdown.</p>
                     <div className={payersContainers}>
                         {peopleArr?.map((person, idx) => {
+                            const fieldName = "payerS";
                             return (
-                                <span key={idx}>{person}</span>
+                                <>
+                                    <input
+                                        key={idx}
+                                        {...register("payers")}
+                                        type="checkbox"
+                                        value={person}
+                                    />
+                                    <label> {person} </label>
+                                </>
                             )
                         })}
                     </div>

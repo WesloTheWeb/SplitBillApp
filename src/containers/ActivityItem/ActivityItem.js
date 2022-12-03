@@ -13,13 +13,13 @@ const ActivityItem = ({ title, personPaid, payers, cost }) => (
         <section className={participantsRow}>
             <h4>payers</h4>
             {/* TODO: Should have its own state of payers separate from the party state */}
-            {payers?.map((person) => {
+            {/* {payers?.map((person) => {
                 return (
                     <NameTag
                         key={person}
                         name={person} />
                 );
-            })}
+            })} */}
         </section>
         <section className={totalExpenseRow}>
             {/* <span>Total Cost: ${cost.toFixed(2)}</span> */}
