@@ -25,9 +25,10 @@ const ExpenseForm = () => {
     const [updated, setUpdated] = useState(payerNameValue);
 
     const dispatch = useDispatch();
-    const expenseData = useSelector((state) => state.expense);
     const availablePartyMembers = useSelector((state) => state.party.partyMembers);
-
+   
+    //TODO: Unique names no duplicates?
+    const expenseData = useSelector((state) => state.expense);
     // const sanitizedArr = [new Set(expenseData.payers);]
 
     const { register, handleSubmit, reset, formState: { errors }, control } = useForm();
