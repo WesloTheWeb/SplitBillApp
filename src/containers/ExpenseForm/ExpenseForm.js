@@ -4,27 +4,17 @@ import { useForm } from "react-hook-form";
 import { setExpenseBucket } from '../../app/expenseSlice';
 import { toggleOverlay } from '../../app/overlaySlice';
 import Button from '../../components/Button/Button';
-import NameTag from '../../components/NameTag/NameTag';
 import Party from '../Party/Party';
 import classes from './ExpenseForm.module.scss';
-
-// TODO: Might be better UX to do a search field to select people than dropdown. I.e type first few letters of available party
-// member and it will populate the field.
 
 const { buttonContainer, payersContainers } = classes;
 
 const ExpenseForm = () => {
-
-    const [peopleArr, setPeopleArr] = useState([]);
-    const [verified, isVerified] = useState(false);
-    const [payerNameValue, setPayerNameValue] = useState('')
     const dispatch = useDispatch();
     const availablePartyMembers = useSelector((state) => state.party.partyMembers);
-
-    const { register, handleSubmit, reset, formState: { errors }, control } = useForm();
+    const { register, handleSubmit } = useForm();
 
     const onSubmit = (data) => {
-
         parseInt(data.cost);
         let count = 0;
         console.log(data);
@@ -62,33 +52,6 @@ const ExpenseForm = () => {
         }
     };
 
-    const handleChange = (event) => {
-        setPayerNameValue(event.target.value);
-    };
-
-    const addPayers = () => {
-        const sanitizeInput = (str) => {
-            return str.charAt(0).toUpperCase() + str.slice(1);
-        };
-
-        setPeopleArr([...peopleArr, truncateName(sanitizeInput(payerNameValue))]);
-        setPayerNameValue('')
-        console.log(peopleArr);
-    };
-    // TODO: Should only add from names available on partyMember slice. Error validation.
-    // TODO: Filter each time shortcut for names on party member.
-    // Don't want to add a payer to non-existant party member.
-
-    const addEverybody = () => {
-        setPeopleArr([...peopleArr, ...availablePartyMembers]);
-        console.log(peopleArr);
-    };
-
-    const includeAll = (evnt) => {
-        evnt.preventDefault();
-        isVerified(!verified);
-    }
-
     return (
         <>
             <h2>Add Expense</h2>
@@ -120,19 +83,7 @@ const ExpenseForm = () => {
                                 required: "Cost cannot be blank.", valueAsNumber: true,
                             })}
                         />
-                        {/* <label>Participants</label>
-                        <span>The textbox below will show a list of available party members, whom you can add that will be the ones paying for this expense.</span>
-                        <div className='addingPayersContainer'>
-                            <input
-                                type="text"
-                                onChange={handleChange}
-                                placeholder='Person(s) name'
-                                value={payerNameValue}
-                            />
-                            <div onClick={addPayers}>+ Add</div>
-                        </div> */}
                         <h3>People who are paying:</h3>
-                        {/* <p>After entering the name of people who are expected to pay, check mark them below to finalize. Anybody not checkmarked will not be added to tally.</p> */}
                         <p>Below is a list of available party members. Check each person name that is expected to pay then click submit when finished.</p>
                     </div>
                     <div>
@@ -153,16 +104,13 @@ const ExpenseForm = () => {
                                         type="checkbox"
                                         value={person}
                                     />
-                                    <label htmlFor={idx}> {person} </label>
+                                    <label htmlFor={idx}> {truncateName(person)} </label>
                                 </div>
                             )
                         })}
                     </div>
                 </section>
                 <section className={buttonContainer}>
-                    {/* <button
-                        onClick={includeAll}
-                    >everybody pays</button> */}
                     <Button
                         action={closeForm}
                         Btntype='cancel'

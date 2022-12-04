@@ -52,7 +52,3 @@ const NameTag = ({ name, payNames }) => {
 };
 
 export default NameTag;
-
-// TODO: Different button to affect different states the party member state and the paying state.
-// So deleting from payers, won't delete from party member.
-// but deleting from partymembers will delete in payers
