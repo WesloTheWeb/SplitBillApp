@@ -16,6 +16,7 @@ const { buttonContainer, payersContainers } = classes;
 const ExpenseForm = () => {
 
     const [peopleArr, setPeopleArr] = useState([]);
+    const [verified, isVerified] = useState(false);
     const [payerNameValue, setPayerNameValue] = useState('')
     const dispatch = useDispatch();
     const availablePartyMembers = useSelector((state) => state.party.partyMembers);
@@ -83,6 +84,10 @@ const ExpenseForm = () => {
         console.log(peopleArr);
     };
 
+    const includeAll = () => {
+        isVerified(!verified);
+    }
+
     return (
         <>
             <h2>Add Expense</h2>
@@ -125,6 +130,9 @@ const ExpenseForm = () => {
                             />
                             <div onClick={addPayers}>+ Add</div>
                         </div> */}
+                        <h3>People who are paying:</h3>
+                        {/* <p>After entering the name of people who are expected to pay, check mark them below to finalize. Anybody not checkmarked will not be added to tally.</p> */}
+                        <p>Below is a list of available party members. Check each person name that is expected to pay then click submit when finished.</p>
                     </div>
                     <div>
                         <label>Party Members</label>
@@ -134,38 +142,55 @@ const ExpenseForm = () => {
                     </div>
                 </section>
                 <section>
-                    <h3>People who are paying:</h3>
-                    <p>After entering the name of people who are expected to pay, check mark them below to finalize. Anybody not checkmarked will not be added to tally.</p>
                     <div className={payersContainers}>
-                        {/* {peopleArr?.map((person, idx) => {
-                            return (
-                                <div key={idx} >
-                                    <input
-                                        id={idx}
-                                        {...register("payers")}
-                                        type="checkbox"
-                                        value={person}
-                                    />
-                                    <label htmlFor={idx}> {person} </label>
-                                </div>
-                            )
-                        })} */}
-                        {availablePartyMembers?.map((person, idx) => {
-                            return (
-                                <div key={idx} >
-                                    <input
-                                        id={idx}
-                                        {...register("payers")}
-                                        type="checkbox"
-                                        value={person}
-                                    />
-                                    <label htmlFor={idx}> {person} </label>
-                                </div>
-                            )
-                        })}
+                        {
+                            verified ? availablePartyMembers?.map((person, idx) => {
+                                return (
+                                    <div key={idx} >
+                                        <input
+                                            id={idx}
+                                            {...register("payers")}
+                                            type="checkbox"
+                                            value={person}
+                                            checked
+                                        />
+                                        <label htmlFor={idx}> {person} </label>
+                                    </div>
+                                )
+                            }) :
+                                availablePartyMembers?.map((person, idx) => {
+                                    return (
+                                        <div key={idx} >
+                                            <input
+                                                id={idx}
+                                                {...register("payers")}
+                                                type="checkbox"
+                                                value={person}
+                                            />
+                                            <label htmlFor={idx}> {person} </label>
+                                        </div>
+                                    )
+                                })
+                        }
+                        {/* {availablePartyMembers?.map((person, idx) => {
+                             return (
+                                 <div key={idx} >
+                                     <input
+                                         id={idx}
+                                         {...register("payers")}
+                                         type="checkbox"
+                                         value={person}
+                                     />
+                                     <label htmlFor={idx}> {person} </label>
+                                 </div>
+                             )
+                         })} */}
                     </div>
                 </section>
                 <section className={buttonContainer}>
+                    <button
+                        onClick={includeAll}
+                    >everybody pays</button>
                     <Button
                         action={closeForm}
                         Btntype='cancel'
