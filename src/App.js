@@ -25,10 +25,11 @@ function App() {
 
   return (
     <div className="App">
+      <h1>Split The Bill</h1>
       {
         overlay.overlay ? <OverlayModal /> : null
       }
-      <nav >
+      <nav>
         <TotalSum
         />
         <Button

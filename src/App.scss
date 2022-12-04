@@ -27,10 +27,18 @@ button {
   display: grid;
   grid-template-columns: 1fr 5fr;
   grid-template-areas:
+    "hud head head"
     "hud party party"
     "hud grid grid"
   ;
   grid-gap: 1rem;
+
+  h1 {
+    grid-area: head;
+    text-align: center;
+    font-size: 2.3rem;
+    margin: 0 auto;
+  }
 }
 
 .header-text {
