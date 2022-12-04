@@ -15,21 +15,10 @@ const { buttonContainer, payersContainers } = classes;
 
 const ExpenseForm = () => {
 
-    function closeForm() {
-        dispatch(toggleOverlay());
-    }
-
     const [peopleArr, setPeopleArr] = useState([]);
-
     const [payerNameValue, setPayerNameValue] = useState('')
-    const [updated, setUpdated] = useState(payerNameValue);
-
     const dispatch = useDispatch();
     const availablePartyMembers = useSelector((state) => state.party.partyMembers);
-   
-    //TODO: Unique names no duplicates?
-    const expenseData = useSelector((state) => state.expense);
-    // const sanitizedArr = [new Set(expenseData.payers);]
 
     const { register, handleSubmit, reset, formState: { errors }, control } = useForm();
 
@@ -45,22 +34,29 @@ const ExpenseForm = () => {
         };
 
         if (count === 4 && data.payers.length > 0) {
-            console.log(typeof data.cost)
-            dispatch(setExpenseBucket(data))
-            dispatch(toggleOverlay())
-        }
-    }
+            console.log(typeof data.cost);
+            dispatch(setExpenseBucket(data));
+            dispatch(toggleOverlay());
+        };
+    };
+
+    const closeForm = () => {
+        dispatch(toggleOverlay());
+    };
 
     const handleChange = (event) => {
         setPayerNameValue(event.target.value);
     };
 
-    const addPayers = (evnt) => {
-        setPeopleArr([...peopleArr, payerNameValue]);
-        setUpdated(evnt.target.value);
+    const addPayers = () => {
+        const sanitizeInput = (str) => {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        };
+
+        setPeopleArr([...peopleArr, sanitizeInput(payerNameValue)]);
         setPayerNameValue('')
         console.log(peopleArr);
-    }
+    };
     // TODO: Should only add from names available on partyMember slice. Error validation.
     // TODO: Filter each time shortcut for names on party member.
     // Don't want to add a payer to non-existant party member.
@@ -119,19 +115,19 @@ const ExpenseForm = () => {
                 </section>
                 <section>
                     <h3>People who are paying:</h3>
-                    <p>Drag the list from party to the field below or use the dropdown.</p>
+                    <p>After entering the name of people who are expected to pay, check mark them below to finalize. Anybody not checkmarked will not be added to tally.</p>
                     <div className={payersContainers}>
                         {peopleArr?.map((person, idx) => {
                             return (
-                                <>
+                                <div key={idx} >
                                     <input
-                                        key={idx}
+                                        id={idx}
                                         {...register("payers")}
                                         type="checkbox"
                                         value={person}
                                     />
-                                    <label> {person} </label>
-                                </>
+                                    <label htmlFor={idx}> {person} </label>
+                                </div>
                             )
                         })}
                     </div>
