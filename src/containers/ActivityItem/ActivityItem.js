@@ -12,15 +12,15 @@ const ActivityItem = ({ title, personPaid, payers, cost }) => {
 
     const menuHandler = () => {
         isMenuOpen(!menuOpen);
-    }
+    };
 
     const moveCloseHandler = () => {
-        isMenuOpen(false)
-    }
+        isMenuOpen(false);
+    };
 
     const removeBucket = () => {
-        dispatch(removeExpenseBucket());
-    }
+        dispatch(removeExpenseBucket(title));
+    };
 
     return (
         <div

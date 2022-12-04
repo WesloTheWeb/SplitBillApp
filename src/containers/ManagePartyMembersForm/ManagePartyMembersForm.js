@@ -23,7 +23,6 @@ const ManagePartyMembersForm = () => {
             keepErrors: true,
             keepDirty: true,
         });
-
     };
 
     function closeForm() {

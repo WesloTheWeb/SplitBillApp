@@ -31,9 +31,8 @@ const expenseSlice = createSlice({
             state.expenses.push(action.payload);
         },
         removeExpenseBucket: (state, action) => {
-            console.log(action);
-            state.expenses = state.expenses.filter((expense) => expense !== action.payload);
-        }
+            state.expenses = state.expenses.filter((expense) => expense.expenseName !== action.payload);
+        } // creates new array from targeting matches of the expense name.
     }
 });
 
