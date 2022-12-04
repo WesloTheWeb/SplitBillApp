@@ -84,7 +84,8 @@ const ExpenseForm = () => {
         console.log(peopleArr);
     };
 
-    const includeAll = () => {
+    const includeAll = (evnt) => {
+        evnt.preventDefault();
         isVerified(!verified);
     }
 
@@ -143,54 +144,25 @@ const ExpenseForm = () => {
                 </section>
                 <section>
                     <div className={payersContainers}>
-                        {
-                            verified ? availablePartyMembers?.map((person, idx) => {
-                                return (
-                                    <div key={idx} >
-                                        <input
-                                            id={idx}
-                                            {...register("payers")}
-                                            type="checkbox"
-                                            value={person}
-                                            checked
-                                        />
-                                        <label htmlFor={idx}> {person} </label>
-                                    </div>
-                                )
-                            }) :
-                                availablePartyMembers?.map((person, idx) => {
-                                    return (
-                                        <div key={idx} >
-                                            <input
-                                                id={idx}
-                                                {...register("payers")}
-                                                type="checkbox"
-                                                value={person}
-                                            />
-                                            <label htmlFor={idx}> {person} </label>
-                                        </div>
-                                    )
-                                })
-                        }
-                        {/* {availablePartyMembers?.map((person, idx) => {
-                             return (
-                                 <div key={idx} >
-                                     <input
-                                         id={idx}
-                                         {...register("payers")}
-                                         type="checkbox"
-                                         value={person}
-                                     />
-                                     <label htmlFor={idx}> {person} </label>
-                                 </div>
-                             )
-                         })} */}
+                        {availablePartyMembers?.map((person, idx) => {
+                            return (
+                                <div key={idx} >
+                                    <input
+                                        id={idx}
+                                        {...register("payers")}
+                                        type="checkbox"
+                                        value={person}
+                                    />
+                                    <label htmlFor={idx}> {person} </label>
+                                </div>
+                            )
+                        })}
                     </div>
                 </section>
                 <section className={buttonContainer}>
-                    <button
+                    {/* <button
                         onClick={includeAll}
-                    >everybody pays</button>
+                    >everybody pays</button> */}
                     <Button
                         action={closeForm}
                         Btntype='cancel'
