@@ -6,19 +6,22 @@ import classes from './Expenses.module.scss';
 const { expenseGrid } = classes;
 
 const Expenses = () => {
-
     const expenses = useSelector((state) => state.expense.expenses)
+
+    console.log(expenses)
 
     return (
         <section className={expenseGrid}>
             {expenses?.map((activity) => {
+                console.log(activity)
                 return (
                     <ActivityItem
                         key={activity.expenseName}
                         title={activity.expenseName}
                         personPaid={activity.personBeingPaid}
                         cost={activity.cost}
-                        participants={activity.payers}
+                        payers={activity.payers}
+                        payNames
                     />
                 )
             })}

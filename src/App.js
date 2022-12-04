@@ -41,7 +41,9 @@ function App() {
         />
         {/* <Button title='Edit expense' /> */}
       </nav>
-      <Party />
+      <Party 
+        minified={false}
+      />
       <Expenses />
     </div>
   );

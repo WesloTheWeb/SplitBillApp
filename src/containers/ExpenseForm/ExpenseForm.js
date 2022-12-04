@@ -1,39 +1,93 @@
-import React from 'react';
+import { React, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from "react-hook-form";
 import { setExpenseBucket } from '../../app/expenseSlice';
+import { toggleOverlay } from '../../app/overlaySlice';
 import Button from '../../components/Button/Button';
 import NameTag from '../../components/NameTag/NameTag';
 import Party from '../Party/Party';
 import classes from './ExpenseForm.module.scss';
 
-// TODO: Need a way to register an input of an array, pushing each person into it (Payers).
 // TODO: Might be better UX to do a search field to select people than dropdown. I.e type first few letters of available party
 // member and it will populate the field.
 
 const { buttonContainer, payersContainers } = classes;
 
 const ExpenseForm = () => {
+
+    const [peopleArr, setPeopleArr] = useState([]);
+    const [verified, isVerified] = useState(false);
+    const [payerNameValue, setPayerNameValue] = useState('')
     const dispatch = useDispatch();
-    const expenseData = useSelector((state) => state.expense);
     const availablePartyMembers = useSelector((state) => state.party.partyMembers);
 
-    const sanitizedArr = new Set(expenseData.payers);
-
-    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const { register, handleSubmit, reset, formState: { errors }, control } = useForm();
 
     const onSubmit = (data) => {
-        dispatch(setExpenseBucket(data.expenses))
-        reset({
-            expenseName: '',
-            personBeingPaid: '',
-            costs: '',
-            payers: [],
-        }, {
-            keepErrors: true,
-            keepDirty: true,
-        });
+
+        parseInt(data.cost);
+        let count = 0;
+        console.log(data);
+        // Checks if form is filled all the way.
+        for (let property in data) {
+            if (data.hasOwnProperty(property)) {
+                count++;
+            };
+        };
+
+        if (count === 4 && data.payers.length > 0) {
+            console.log(typeof data.cost);
+            dispatch(setExpenseBucket(data));
+            dispatch(toggleOverlay());
+        };
     };
+
+    const closeForm = () => {
+        dispatch(toggleOverlay());
+    };
+
+    const truncateName = (str, length = 12, ending) => {
+        if (length == null) {
+            length = 100;
+        };
+
+        if (ending == null) {
+            ending = "..";
+        };
+
+        if (str.length > length) {
+            return str.substring(0, length - ending.length) + ending;
+        } else {
+            return str;
+        }
+    };
+
+    const handleChange = (event) => {
+        setPayerNameValue(event.target.value);
+    };
+
+    const addPayers = () => {
+        const sanitizeInput = (str) => {
+            return str.charAt(0).toUpperCase() + str.slice(1);
+        };
+
+        setPeopleArr([...peopleArr, truncateName(sanitizeInput(payerNameValue))]);
+        setPayerNameValue('')
+        console.log(peopleArr);
+    };
+    // TODO: Should only add from names available on partyMember slice. Error validation.
+    // TODO: Filter each time shortcut for names on party member.
+    // Don't want to add a payer to non-existant party member.
+
+    const addEverybody = () => {
+        setPeopleArr([...peopleArr, ...availablePartyMembers]);
+        console.log(peopleArr);
+    };
+
+    const includeAll = (evnt) => {
+        evnt.preventDefault();
+        isVerified(!verified);
+    }
 
     return (
         <>
@@ -50,7 +104,7 @@ const ExpenseForm = () => {
                             {...register("expenseName", { required: "Input cannot be blank." })}
                         />
                         <label>Person being paid</label>
-                        <select>
+                        <select {...register("personBeingPaid", { required: "Input cannot be blank." })}>
                             <option value="none" defaultValue disabled hidden>Select a party member</option>
                             {availablePartyMembers.map((person, id) => {
                                 return (
@@ -60,30 +114,57 @@ const ExpenseForm = () => {
                         </select>
                         <label>Cost of expense</label>
                         <input
-                            type="text"
+                            type="number"
                             placeholder="$ total amount"
-                            {...register("cost", { required: "Cost cannot be blank." })}
+                            {...register("cost", {
+                                required: "Cost cannot be blank.", valueAsNumber: true,
+                            })}
                         />
+                        {/* <label>Participants</label>
+                        <span>The textbox below will show a list of available party members, whom you can add that will be the ones paying for this expense.</span>
+                        <div className='addingPayersContainer'>
+                            <input
+                                type="text"
+                                onChange={handleChange}
+                                placeholder='Person(s) name'
+                                value={payerNameValue}
+                            />
+                            <div onClick={addPayers}>+ Add</div>
+                        </div> */}
+                        <h3>People who are paying:</h3>
+                        {/* <p>After entering the name of people who are expected to pay, check mark them below to finalize. Anybody not checkmarked will not be added to tally.</p> */}
+                        <p>Below is a list of available party members. Check each person name that is expected to pay then click submit when finished.</p>
                     </div>
                     <div>
                         <label>Party Members</label>
-                        <Party />
+                        <Party
+                            minified
+                        />
                     </div>
                 </section>
                 <section>
-                    {/* TODO:  Shared state of what participants will be. Drag and drop from party. */}
-                    <h3>People who are paying:</h3>
-                    <p>Drag the list from party to the field below or use the dropdown.</p>
                     <div className={payersContainers}>
-                        {sanitizedArr.payers?.map((person) => {
+                        {availablePartyMembers?.map((person, idx) => {
                             return (
-                                <NameTag name={person} />
+                                <div key={idx} >
+                                    <input
+                                        id={idx}
+                                        {...register("payers")}
+                                        type="checkbox"
+                                        value={person}
+                                    />
+                                    <label htmlFor={idx}> {person} </label>
+                                </div>
                             )
                         })}
                     </div>
                 </section>
                 <section className={buttonContainer}>
+                    {/* <button
+                        onClick={includeAll}
+                    >everybody pays</button> */}
                     <Button
+                        action={closeForm}
                         Btntype='cancel'
                         title="Cancel" />
                     <Button

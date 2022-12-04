@@ -5,7 +5,7 @@ import classes from './NameTag.module.scss';
 
 const { nameTagContainer, nameTagExitContainer } = classes;
 
-const NameTag = ({ name }) => {
+const NameTag = ({ name, payNames }) => {
 
     const dispatch = useDispatch();
 
@@ -13,17 +13,46 @@ const NameTag = ({ name }) => {
         dispatch(removePartyMember(name));
     }
 
+    const truncateName = (str, length = 12, ending) => {
+        if (length == null) {
+            length = 100;
+        };
+
+        if (ending == null) {
+            ending = "..";
+        };
+
+        if (str.length > length) {
+            return str.substring(0, length - ending.length) + ending;
+        } else {
+            return str;
+        }
+    };
+
     return (
-        <div className={nameTagContainer}>
-            {name}
-            <div 
-                className={nameTagExitContainer}
-                onClick={removeNameHandler}
-                >
-                x
-            </div>
-        </div>
+        <>
+            {
+                payNames ?
+                    (<div className={nameTagContainer}>
+                        {truncateName(name)}
+                    </div >)
+                    :
+                    (<div className={nameTagContainer}>
+                        {truncateName(name)}
+                        <div
+                            className={nameTagExitContainer}
+                            onClick={removeNameHandler}
+                        >
+                            x
+                        </div>
+                    </div >)
+            }
+        </>
     );
 };
 
 export default NameTag;
+
+// TODO: Different button to affect different states the party member state and the paying state.
+// So deleting from payers, won't delete from party member.
+// but deleting from partymembers will delete in payers
