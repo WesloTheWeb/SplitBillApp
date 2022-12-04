@@ -1,4 +1,6 @@
 import { React, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { removeExpenseBucket } from '../../app/expenseSlice';
 import NameTag from '../../components/NameTag/NameTag';
 import classes from './ActivityItem.module.scss';
 
@@ -6,7 +8,7 @@ const { activityContainer, headerRow, participantsRow, totalExpenseRow, dividedS
 
 const ActivityItem = ({ title, personPaid, payers, cost }) => {
     const [menuOpen, isMenuOpen] = useState(false);
-
+    const dispatch = useDispatch();
 
     const menuHandler = () => {
         isMenuOpen(!menuOpen);
@@ -14,6 +16,10 @@ const ActivityItem = ({ title, personPaid, payers, cost }) => {
 
     const moveCloseHandler = () => {
         isMenuOpen(false)
+    }
+
+    const removeBucket = () => {
+        dispatch(removeExpenseBucket());
     }
 
     return (
@@ -33,13 +39,13 @@ const ActivityItem = ({ title, personPaid, payers, cost }) => {
                 menuOpen ? (
                     <section className={menu}>
                         <button>Edit</button>
-                        <button>Delete</button>
+                        <button
+                            onClick={removeBucket}
+                        >Delete</button>
                     </section>
                 )
                     : null
             }
-
-
             <section className={headerRow}>
                 <h3>{title}</h3>
                 <span>Please pay to: <b>{personPaid}</b></span>

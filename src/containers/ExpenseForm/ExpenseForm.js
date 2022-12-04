@@ -17,7 +17,6 @@ const ExpenseForm = () => {
     const onSubmit = (data) => {
         parseInt(data.cost);
         let count = 0;
-        console.log(data);
         // Checks if form is filled all the way.
         for (let property in data) {
             if (data.hasOwnProperty(property)) {
@@ -26,7 +25,6 @@ const ExpenseForm = () => {
         };
 
         if (count === 4 && data.payers.length > 0) {
-            console.log(typeof data.cost);
             dispatch(setExpenseBucket(data));
             dispatch(toggleOverlay());
         };
