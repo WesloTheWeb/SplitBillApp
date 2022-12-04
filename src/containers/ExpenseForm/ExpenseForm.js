@@ -23,6 +23,7 @@ const ExpenseForm = () => {
     const { register, handleSubmit, reset, formState: { errors }, control } = useForm();
 
     const onSubmit = (data) => {
+
         parseInt(data.cost);
         let count = 0;
         console.log(data);
@@ -77,6 +78,11 @@ const ExpenseForm = () => {
     // TODO: Filter each time shortcut for names on party member.
     // Don't want to add a payer to non-existant party member.
 
+    const addEverybody = () => {
+        setPeopleArr([...peopleArr, ...availablePartyMembers]);
+        console.log(peopleArr);
+    };
+
     return (
         <>
             <h2>Add Expense</h2>
@@ -108,7 +114,7 @@ const ExpenseForm = () => {
                                 required: "Cost cannot be blank.", valueAsNumber: true,
                             })}
                         />
-                        <label>Participants</label>
+                        {/* <label>Participants</label>
                         <span>The textbox below will show a list of available party members, whom you can add that will be the ones paying for this expense.</span>
                         <div className='addingPayersContainer'>
                             <input
@@ -117,10 +123,8 @@ const ExpenseForm = () => {
                                 placeholder='Person(s) name'
                                 value={payerNameValue}
                             />
-                            <div
-                                onClick={addPayers}
-                            >+ Add</div>
-                        </div>
+                            <div onClick={addPayers}>+ Add</div>
+                        </div> */}
                     </div>
                     <div>
                         <label>Party Members</label>
@@ -133,7 +137,20 @@ const ExpenseForm = () => {
                     <h3>People who are paying:</h3>
                     <p>After entering the name of people who are expected to pay, check mark them below to finalize. Anybody not checkmarked will not be added to tally.</p>
                     <div className={payersContainers}>
-                        {peopleArr?.map((person, idx) => {
+                        {/* {peopleArr?.map((person, idx) => {
+                            return (
+                                <div key={idx} >
+                                    <input
+                                        id={idx}
+                                        {...register("payers")}
+                                        type="checkbox"
+                                        value={person}
+                                    />
+                                    <label htmlFor={idx}> {person} </label>
+                                </div>
+                            )
+                        })} */}
+                        {availablePartyMembers?.map((person, idx) => {
                             return (
                                 <div key={idx} >
                                     <input
