@@ -1,6 +1,8 @@
 import { React, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { removeExpenseBucket } from '../../app/expenseSlice';
+import { toggleOverlay } from '../../app/overlaySlice';
+import { setModal } from '../../app/modalSlice';
 import NameTag from '../../components/NameTag/NameTag';
 import classes from './ActivityItem.module.scss';
 
@@ -9,6 +11,11 @@ const { activityContainer, headerRow, participantsRow, totalExpenseRow, dividedS
 const ActivityItem = ({ title, personPaid, payers, cost }) => {
     const [menuOpen, isMenuOpen] = useState(false);
     const dispatch = useDispatch();
+
+    function openEditActivityModal() {
+        dispatch(setModal('editExpense'));
+        dispatch(toggleOverlay());
+      }
 
     const menuHandler = () => {
         isMenuOpen(!menuOpen);
@@ -38,7 +45,9 @@ const ActivityItem = ({ title, personPaid, payers, cost }) => {
             {
                 menuOpen ? (
                     <section className={menu}>
-                        <button>Edit</button>
+                        <button
+                            onClick={openEditActivityModal}
+                            >Edit</button>
                         <button
                             onClick={removeBucket}
                         >Delete</button>
