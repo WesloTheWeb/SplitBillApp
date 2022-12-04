@@ -13,16 +13,32 @@ const NameTag = ({ name, payNames }) => {
         dispatch(removePartyMember(name));
     }
 
+    const truncateName = (str, length = 12, ending) => {
+        if (length == null) {
+            length = 100;
+        };
+
+        if (ending == null) {
+            ending = "..";
+        };
+
+        if (str.length > length) {
+            return str.substring(0, length - ending.length) + ending;
+        } else {
+            return str;
+        }
+    };
+
     return (
         <>
             {
                 payNames ?
                     (<div className={nameTagContainer}>
-                        {name}
+                        {truncateName(name)}
                     </div >)
                     :
                     (<div className={nameTagContainer}>
-                        {name}
+                        {truncateName(name)}
                         <div
                             className={nameTagExitContainer}
                             onClick={removeNameHandler}
