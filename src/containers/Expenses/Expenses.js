@@ -21,7 +21,6 @@ const Expenses = () => {
                         personPaid={activity.personBeingPaid}
                         cost={activity.cost}
                         payers={activity.payers}
-                        payNames
                     />
                 )
             })}
