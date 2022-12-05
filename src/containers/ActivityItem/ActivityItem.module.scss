@@ -38,6 +38,11 @@
     background-color: $participantsPool;
     padding: 1rem;
     padding-top: 0.25rem;
+
+    h4 {
+        margin: 0;
+        padding-top: 0;
+    }
 }
 
 .totalExpenseRow {
@@ -75,16 +80,22 @@
     position: absolute;
     right: 0;
     top: 2.5rem;
+    box-shadow: $boxShadow;
     background-color: $white;
     color: $gold;
-    border: solid 1px #000;
 
     button {
         border-radius: 0;
-        font-size: 1rem;
+        // font-size: 1rem;
+        font-size: .9375rem;
         display: block;
         border: none;
         width: 100%;
+        margin: 0;
 
+        &:hover {
+            background-color: $menuHover;
+            color: #050505;
+        }
     }
 }

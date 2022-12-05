@@ -14,10 +14,11 @@ const EditForm = () => {
     const availablePartyMembers = useSelector((state) => state.party.partyMembers);
     // Current Party should give us the array of payers.
     // Also do not want all just the specific bucket that was filled out.
-    const currentParty = useSelector((state) => state.expense.expenses.payers);
+    const currentParty = useSelector((state) => state.expense.expenses);
     const { register, handleSubmit } = useForm();
 
     console.log(currentParty)
+    console.log(currentParty.payers)
 
     const onSubmit = (data) => {
         parseInt(data.cost);
@@ -55,9 +56,11 @@ const EditForm = () => {
         }
     };
 
+    // TODO: If want previous data from redux state, use map to read over.
+
     return (
         <>
-            <h2>Add Expense</h2>
+            <h2>Edit Expense</h2>
             <form
                 onSubmit={handleSubmit(onSubmit)}
             >
@@ -97,23 +100,33 @@ const EditForm = () => {
                     </div>
                 </section>
                 <section>
-                     {/* TODO: Need to differentiate between those already selected and those available. */}
+                    {/* TODO: Need to differentiate between those already selected and those available. */}
                     <div className={payersContainers}>
-                        {currentParty?.map((person, idx) => {
-                            return (
-                                <div key={idx} >
-                                    {person} // this works
-                                    {/* <input
-                                        id={idx}
-                                        {...register("payers")}
-                                        type="checkbox"
-                                        value={person.payers}
-                                        checked
-                                    />
-                                    <label htmlFor={idx}> {truncateName(person)} </label> */}
-                                </div>
-                            )
-                        })}
+                        {currentParty?.filter((expense) => expense.expenseName === 'Korean BBQ')
+                            .map((person, idx) => {
+                                return (
+                                    <>
+                                        <div key={idx} >
+                                            {person.payers.map((payingName, idx) => {
+                                                return (
+                                                    <>
+                                                        <input
+                                                            id={idx}
+                                                            // {...register("payers")}
+                                                            type="checkbox"
+                                                            value={payingName[idx]}
+                                                            checked
+                                                        />
+                                                        <label htmlFor={idx}> {truncateName(person.payers)} </label>
+                                                    </>
+                                                )
+                                            })}
+                                        </div>
+
+                                        <h2>Hello</h2>
+                                    </>
+                                )
+                            })}
                     </div>
                 </section>
                 <section className={buttonContainer}>

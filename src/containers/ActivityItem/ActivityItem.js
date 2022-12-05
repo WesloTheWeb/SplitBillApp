@@ -12,10 +12,10 @@ const ActivityItem = ({ title, personPaid, payers, cost }) => {
     const [menuOpen, isMenuOpen] = useState(false);
     const dispatch = useDispatch();
 
-    function openEditActivityModal() {
-        dispatch(setModal('editExpense'));
-        dispatch(toggleOverlay());
-      }
+    // function openEditActivityModal() {
+    //     dispatch(setModal('editExpense'));
+    //     dispatch(toggleOverlay());
+    // }
 
     const menuHandler = () => {
         isMenuOpen(!menuOpen);
@@ -45,12 +45,8 @@ const ActivityItem = ({ title, personPaid, payers, cost }) => {
             {
                 menuOpen ? (
                     <section className={menu}>
-                        <button
-                            onClick={openEditActivityModal}
-                            >Edit</button>
-                        <button
-                            onClick={removeBucket}
-                        >Delete</button>
+                        {/* <button onClick={openEditActivityModal}>Edit</button> */}
+                        <button onClick={removeBucket}>Delete</button>
                     </section>
                 )
                     : null
@@ -60,7 +56,7 @@ const ActivityItem = ({ title, personPaid, payers, cost }) => {
                 <span>Please pay to: <b>{personPaid}</b></span>
             </section>
             <section className={participantsRow}>
-                <h4>payers</h4>
+                <h4>Payers</h4>
                 {/* Using the payers redux state separate from party members */}
                 {payers?.map((person) => {
                     return (
