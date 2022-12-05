@@ -15,7 +15,6 @@ const ManagePartyMembersForm = () => {
     const dispatch = useDispatch();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
-    console.log(currentParty)
     const onSubmit = (data) => {
         dispatch(setPartyMember(data.partyMemberName))
         reset({
@@ -39,8 +38,8 @@ const ManagePartyMembersForm = () => {
             <h2>Manage Party Members</h2>
             <p>
                 To add members to your party fill out the form below of their name and click add. To remove party members,
-                hover over their name and click the 'x' to delete from the party.
-            </p>
+                hover over their name and click the 'x' to delete from the party. <b>Please have at least 2 people.</b> 
+            </p> 
             <form
                 className='formContainer'
                 onSubmit={handleSubmit(onSubmit)}
@@ -80,7 +79,7 @@ const ManagePartyMembersForm = () => {
             </div>
             <section className={buttonOrderParty} >
                 {
-                    currentParty?.length > 0 ?
+                    currentParty?.length >= 2 ?
                         (<Button
                             action={closeForm}
                             Btntype="done"

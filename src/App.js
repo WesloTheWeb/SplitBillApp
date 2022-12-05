@@ -25,7 +25,10 @@ function App() {
 
   return (
     <div className="App">
-      <h1>Split The Bill</h1>
+      <div className='header'>
+        <h1>Split The Bill</h1>
+        <sub>It always come due...</sub>
+      </div>
       {
         overlay.overlay ? <OverlayModal /> : null
       }
@@ -42,7 +45,7 @@ function App() {
         />
         {/* <Button title='Edit expense' /> */}
       </nav>
-      <Party 
+      <Party
         minified={false}
       />
       <Expenses />

@@ -1,4 +1,4 @@
-import { React, useState } from 'react';
+import { React } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useForm } from "react-hook-form";
 import { setExpenseBucket } from '../../app/expenseSlice';
@@ -13,6 +13,8 @@ const ExpenseForm = () => {
     const dispatch = useDispatch();
     const availablePartyMembers = useSelector((state) => state.party.partyMembers);
     const { register, handleSubmit, formState: { errors } } = useForm();
+
+    const regEx = /\D/g;
 
     const onSubmit = (data) => {
         parseInt(data.cost);

@@ -17,9 +17,6 @@ const EditForm = () => {
     const currentParty = useSelector((state) => state.expense.expenses);
     const { register, handleSubmit } = useForm();
 
-    console.log(currentParty)
-    console.log(currentParty.payers)
-
     const onSubmit = (data) => {
         parseInt(data.cost);
         let count = 0;
