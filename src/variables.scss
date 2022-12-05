@@ -4,16 +4,32 @@ $red: #E42424;
 $gold: #F5BE0C;
 $navyBlue: #3C496C;
 $white: #fff;
+$black: #000;
+$light-grey: #a9a9a9;
+$light-white: #F0F0F0;
 
 // Misc.
+$modalBackgroundColor: #F3F3F3;
 $borderOutline: #5CA3C2;
 $gridBackdrop: #eae4e440;
 $participantsPool: #FFFEEF;
+$disabledColor: #cccccc;
+$NameTagdeleteBackgroundColor: #EFF1F3;
 
 // Button Colors
 $addColor: #006600;
-$doneColor: #5AB5FA;
+$doneColor: #1072FA;
+$resetColor: #F0CE3F;
+$hoverCancelColor: #ED123D;
+$hoverAddColor: #004d00;
+$hoverDoneColor: #2c1ce3;
+
+// Text Colors
+$disabledColorText: #666666;
 
 // Effects
 $boxShadow: 0 2px 5px 1px rgb(64 60 67 / 46%);
 $menuHover: rgb(240,242,245);
+
+// Menu
+$menuTextColor: #050505;

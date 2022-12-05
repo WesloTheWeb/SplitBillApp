@@ -1,5 +1,5 @@
 import { React } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from "react-hook-form";
 import Button from '../../components/Button/Button';
 import { toggleOverlay } from '../../app/overlaySlice';
@@ -11,10 +11,11 @@ import Party from '../Party/Party';
 const { buttonOrderParty } = classes;
 
 const ManagePartyMembersForm = () => {
-
+    const currentParty = useSelector((state) => state.party.partyMembers)
     const dispatch = useDispatch();
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
+    console.log(currentParty)
     const onSubmit = (data) => {
         dispatch(setPartyMember(data.partyMemberName))
         reset({
@@ -78,11 +79,21 @@ const ManagePartyMembersForm = () => {
                 <Party />
             </div>
             <section className={buttonOrderParty} >
-                <Button
-                    action={closeForm}
-                    Btntype="done"
-                    title="Done"
-                />
+                {
+                    currentParty?.length > 0 ?
+                        (<Button
+                            action={closeForm}
+                            Btntype="done"
+                            title="Done"
+                        />) :
+                        (<Button
+                            disabled
+                            action={closeForm}
+                            Btntype="done"
+                            title="Done"
+                        />) 
+                }
+
                 <Button
                     action={clearPartyHandler}
                     Btntype="clearParty"

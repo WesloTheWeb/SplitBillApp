@@ -2,7 +2,7 @@
 
 .activityContainer {
     position: relative;
-    border: 2px solid #000;
+    border: 2px solid $black;
     border-radius: 25px;
     text-align: center;
     box-sizing: content-box;
@@ -31,8 +31,8 @@
 }
 
 .participantsRow {
-    border-top: 2px solid #000;
-    border-bottom: 2px solid #000;
+    border-top: 2px solid $black;
+    border-bottom: 2px solid $black;
     display: flex;
     flex-direction: column;
     background-color: $participantsPool;
@@ -82,11 +82,10 @@
     top: 2.5rem;
     box-shadow: $boxShadow;
     background-color: $white;
-    color: $gold;
 
     button {
         border-radius: 0;
-        // font-size: 1rem;
+        color: $menuTextColor;
         font-size: .9375rem;
         display: block;
         border: none;
@@ -95,7 +94,6 @@
 
         &:hover {
             background-color: $menuHover;
-            color: #050505;
         }
     }
 }

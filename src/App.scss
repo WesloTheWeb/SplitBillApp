@@ -18,8 +18,8 @@ button {
 
   &:hover {
     cursor: pointer;
-    background-color: #000;
-    color: #F0F0F0;
+    background-color: $black;
+    color: $light-white;
   }
 }
 
@@ -87,15 +87,14 @@ button {
 
   .errorMessage {
     display: flex;
-    background-color: #FFF;
+    background-color: $white;
     padding: 0.25rem;
-    border: 2px solid red;
-    color: red;
-    margin: 1rem 0.25rem;
+    border: 2px solid $red;
+    color: $red;
+    margin: .5rem 0.25rem;
 
     svg {
       width: 2rem;
-
     }
   }
 }
@@ -126,7 +125,7 @@ button {
 
   div {
     background-color: $navyBlue;
-    color: #fff;
+    color: $white;
     font-size: 1.25rem;
     text-align: center;
     padding: 0 0.85rem 0 0.25rem;

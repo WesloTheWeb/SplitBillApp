@@ -3,7 +3,7 @@ import classes from './Button.module.scss';
 
 const { totalSumButton, cancelCTA, addCTA, resetCTA, doneCTA, additionCTA } = classes;
 
-const Button = ({ title, action, Btntype }) => {
+const Button = ({ title, action, Btntype, disabled }) => {
 
     const buttonTypes = {
         nav: totalSumButton,
@@ -38,6 +38,7 @@ const Button = ({ title, action, Btntype }) => {
 
     return (
         <button
+            disabled={disabled}
             className={variants(Btntype)}
             onClick={action}
         >
