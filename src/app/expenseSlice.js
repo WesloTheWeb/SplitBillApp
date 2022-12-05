@@ -29,9 +29,12 @@ const expenseSlice = createSlice({
     reducers: {
         setExpenseBucket: (state, action) => {
             state.expenses.push(action.payload);
-        }
+        },
+        removeExpenseBucket: (state, action) => {
+            state.expenses = state.expenses.filter((expense) => expense.expenseName !== action.payload);
+        } // creates new array from targeting matches of the expense name.
     }
 });
 
-export const { setExpenseBucket, addPersonToPayers } = expenseSlice.actions;
+export const { setExpenseBucket, removeExpenseBucket } = expenseSlice.actions;
 export default expenseSlice.reducer;

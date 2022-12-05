@@ -1,8 +1,10 @@
+@import '../../variables.scss';
+
 .payersContainers {
     display: grid;
     margin-bottom: 2rem;
     grid-template-columns: repeat(10, .25fr);
-    border: 2px solid #000;
+    border: 2px solid $black;
     padding: .5rem;
     
     div {
@@ -13,7 +15,9 @@
     label {
         font-weight: bold;
         font-size: 1.25rem;
-        color:  #2407df;
+        text-transform: capitalize;
+        color:  $black;
+        cursor: pointer;
     }
 }
 

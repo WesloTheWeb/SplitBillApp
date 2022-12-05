@@ -1,7 +1,8 @@
 @import '../../variables.scss';
 
 .activityContainer {
-    border: 2px solid #000;
+    position: relative;
+    border: 2px solid $black;
     border-radius: 25px;
     text-align: center;
     box-sizing: content-box;
@@ -11,12 +12,13 @@
 
     h3, h4 {
         margin: 0;
+        padding-top: 1.75rem;
     }
 
     span {
         display: block;
         font-weight: normal;
-        margin-bottom: 1rem;
+        padding-bottom: 1rem;
     }
 }
 
@@ -29,13 +31,18 @@
 }
 
 .participantsRow {
-    border-top: 2px solid #000;
-    border-bottom: 2px solid #000;
+    border-top: 2px solid $black;
+    border-bottom: 2px solid $black;
     display: flex;
     flex-direction: column;
     background-color: $participantsPool;
     padding: 1rem;
     padding-top: 0.25rem;
+
+    h4 {
+        margin: 0;
+        padding-top: 0;
+    }
 }
 
 .totalExpenseRow {
@@ -52,4 +59,41 @@
     color: $red;
     padding: 1rem;
     font-size: 2rem;
+}
+
+.menuIcon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 1rem;
+    
+    svg { 
+        height: 2.5rem;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
+.menu {
+    position: absolute;
+    right: 0;
+    top: 2.5rem;
+    box-shadow: $boxShadow;
+    background-color: $white;
+
+    button {
+        border-radius: 0;
+        color: $menuTextColor;
+        font-size: .9375rem;
+        display: block;
+        border: none;
+        width: 100%;
+        margin: 0;
+
+        &:hover {
+            background-color: $menuHover;
+        }
+    }
 }

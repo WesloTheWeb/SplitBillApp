@@ -10,11 +10,10 @@
 
 .cancelCTA {
     background-color: $red;
-    color: #FFF;
+    color: $white;
 
     &:hover {
-        background-color: #FFF;
-        color: red;
+        background-color: $hoverCancelColor;
     }
 }
 
@@ -26,7 +25,7 @@
     color: $white;
 
     &:hover {
-        background-color:  #004d00;
+        background-color:  $hoverAddColor;
     }
 }
 
@@ -35,17 +34,24 @@
     color: $white;
 
     &:hover {
-        background-color: #1072FA;
+        background-color: $hoverDoneColor;
+    }
+
+    &:disabled {
+      cursor: not-allowed;
+      border: 1px solid #999999;
+      background-color: $disabledColor;
+      color: $disabledColorText;
     }
 }
 
 .resetCTA {
-    background-color: #F0CE3F;
-    color: #000;
+    background-color: $resetColor;
+    color: $black;
 
     &:hover {
         background-color: $gold;
-        color: #000;
+        color: $black;
     }
 }
 

@@ -8,12 +8,9 @@ const { expenseGrid } = classes;
 const Expenses = () => {
     const expenses = useSelector((state) => state.expense.expenses)
 
-    console.log(expenses)
-
     return (
         <section className={expenseGrid}>
             {expenses?.map((activity) => {
-                console.log(activity)
                 return (
                     <ActivityItem
                         key={activity.expenseName}
@@ -21,7 +18,6 @@ const Expenses = () => {
                         personPaid={activity.personBeingPaid}
                         cost={activity.cost}
                         payers={activity.payers}
-                        payNames
                     />
                 )
             })}
